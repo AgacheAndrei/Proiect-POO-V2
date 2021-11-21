@@ -19,11 +19,9 @@ import java.util.ArrayList;
  * @author ioio
  */
 public  class MyClass implements Serializable {
-    
-public static void main(String[] args) throws IOException, ClassNotFoundException {
-    // The file extension doesn't matter in this case, since they're only there to tell
-    // the OS with what program to associate a particular file
-    ObjectOutputStream objectOutputStream =
+  public static void funtie() throws IOException, ClassNotFoundException
+  {
+      ObjectOutputStream objectOutputStream =
         new ObjectOutputStream(new FileOutputStream("data.olivera"));
     
         HDD hdd3=new HDD("SKYHAWCK", "Seagate", true, (float) 474, 2018 , "Surveillance", 4000, "Sata 3", 5900);
@@ -164,4 +162,11 @@ public static void main(String[] args) throws IOException, ClassNotFoundExceptio
     }
     
 }
+  public static void main(String[] args)throws IOException, ClassNotFoundException{
+    // The file extension doesn't matter in this case, since they're only there to tell
+    // the OS with what program to associate a particular file
+    funtie();
+    
 }
+  }
+

@@ -43,7 +43,12 @@ public class Interfata_Principala extends javax.swing.JFrame {
        btn_filtre_RAM.setVisible(false);
        btn_filtre_SSD.setVisible(false);
        btn_filtre_HDD.setVisible(false);
-        
+      try{
+       MyClass.funtie();
+      }catch(Exception e)
+      {
+          e.getStackTrace();
+      }
   
     }
     ArrayList<ObiectGeneral> arrayListBuffer = new ArrayList<>();
