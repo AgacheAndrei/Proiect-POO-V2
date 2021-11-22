@@ -426,7 +426,7 @@ public class Interfata_Principala extends javax.swing.JFrame {
         jCheckBox3.setText("Pret HDD >2000");
         jCheckBox3.setActionCommand("");
         jCheckBox3.setOpaque(false);
-        jPanel1.add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 110, -1));
+        jPanel1.add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, 130, -1));
 
         btn_filtre_RAM.setText("Filtre Ram");
         btn_filtre_RAM.setkHoverColor(new java.awt.Color(119, 197, 220));
