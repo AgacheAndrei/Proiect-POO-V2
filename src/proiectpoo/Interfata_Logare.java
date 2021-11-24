@@ -19,6 +19,8 @@ public class Interfata_Logare extends javax.swing.JFrame {
      */
     public Interfata_Logare() {
         initComponents();
+       
+       
     }
 
     /**
@@ -30,6 +32,7 @@ public class Interfata_Logare extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Rama = new keeptoo.KGradientPanel();
         pnl_bg = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         login = new javax.swing.JPanel();
@@ -50,6 +53,9 @@ public class Interfata_Logare extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        Rama.setkEndColor(new java.awt.Color(119, 197, 220));
+        Rama.setkStartColor(new java.awt.Color(41, 168, 73));
 
         pnl_bg.setBackground(new java.awt.Color(255, 255, 255));
         pnl_bg.setToolTipText("");
@@ -205,7 +211,7 @@ public class Interfata_Logare extends javax.swing.JFrame {
             .addGroup(loginLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(Title_login)
-                .addGap(53, 53, 53)
+                .addGap(54, 54, 54)
                 .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(icon_email, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(loginLayout.createSequentialGroup()
@@ -263,9 +269,9 @@ public class Interfata_Logare extends javax.swing.JFrame {
             loaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(loaderLayout.createSequentialGroup()
                 .addGap(123, 123, 123)
-                .addComponent(imag_load, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+                .addComponent(imag_load, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
                 .addGap(55, 55, 55)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
                 .addGap(178, 178, 178))
         );
 
@@ -282,15 +288,36 @@ public class Interfata_Logare extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        javax.swing.GroupLayout RamaLayout = new javax.swing.GroupLayout(Rama);
+        Rama.setLayout(RamaLayout);
+        RamaLayout.setHorizontalGroup(
+            RamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 968, Short.MAX_VALUE)
+            .addGroup(RamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(RamaLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(pnl_bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        RamaLayout.setVerticalGroup(
+            RamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 582, Short.MAX_VALUE)
+            .addGroup(RamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(RamaLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(pnl_bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnl_bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Rama, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnl_bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Rama, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -398,6 +425,7 @@ public class Interfata_Logare extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private keeptoo.KGradientPanel Rama;
     private javax.swing.JLabel Title_login;
     private javax.swing.JButton btn_login;
     private javax.swing.JLabel forgot_text;

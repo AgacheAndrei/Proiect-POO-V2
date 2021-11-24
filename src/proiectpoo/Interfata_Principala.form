@@ -229,7 +229,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Setari"/>
+                    <Property name="text" type="java.lang.String" value="Profilul meu"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -477,8 +477,15 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jScrollPane1" pref="464" max="32767" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane1" pref="382" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="181" max="-2" attributes="0"/>
+                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane2" min="-2" pref="450" max="-2" attributes="0"/>
                       </Group>
@@ -486,16 +493,23 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane2" alignment="0" pref="375" max="32767" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jScrollPane1" min="-2" pref="350" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane1" max="32767" attributes="0"/>
+                              <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
+                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+                  <Properties>
+                    <Property name="opaque" type="boolean" value="false"/>
+                  </Properties>
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                   </AuxValues>
@@ -530,6 +544,7 @@
                         <BevelBorder/>
                       </Border>
                     </Property>
+                    <Property name="opaque" type="boolean" value="false"/>
                   </Properties>
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
@@ -543,6 +558,9 @@
                           <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
                             <BevelBorder/>
                           </Border>
+                        </Property>
+                        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                          <Color id="Default Cursor"/>
                         </Property>
                         <Property name="opaque" type="boolean" value="false"/>
                       </Properties>
@@ -615,30 +633,39 @@
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JCheckBox" name="SSD_">
-                          <Properties>
-                            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                              <ComponentRef name="buttonGroupTIP"/>
-                            </Property>
-                            <Property name="text" type="java.lang.String" value="SSD"/>
-                            <Property name="opaque" type="boolean" value="false"/>
-                          </Properties>
-                          <Constraints>
-                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="200" y="50" width="-1" height="-1"/>
-                            </Constraint>
-                          </Constraints>
-                        </Component>
-                        <Component class="javax.swing.JCheckBox" name="RAM_">
+                        <Component class="javax.swing.JRadioButton" name="RAM_Tip">
                           <Properties>
                             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                               <ComponentRef name="buttonGroupTIP"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="RAM"/>
+                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                              <Color id="Default Cursor"/>
+                            </Property>
                             <Property name="opaque" type="boolean" value="false"/>
                           </Properties>
                           <Events>
-                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="RAM_MouseClicked"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RAM_TipActionPerformed"/>
+                          </Events>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="140" y="50" width="-1" height="-1"/>
+                            </Constraint>
+                          </Constraints>
+                        </Component>
+                        <Component class="javax.swing.JRadioButton" name="HDD_Tip">
+                          <Properties>
+                            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                              <ComponentRef name="buttonGroupTIP"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="HDD"/>
+                            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                              <Color id="Default Cursor"/>
+                            </Property>
+                            <Property name="opaque" type="boolean" value="false"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="HDD_TipActionPerformed"/>
                           </Events>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -646,157 +673,933 @@
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JCheckBox" name="HDD_">
+                        <Component class="javax.swing.JRadioButton" name="SSD_Tip">
                           <Properties>
                             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                               <ComponentRef name="buttonGroupTIP"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="HDD"/>
-                            <Property name="opaque" type="boolean" value="false"/>
-                          </Properties>
-                          <Constraints>
-                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="110" y="50" width="-1" height="-1"/>
-                            </Constraint>
-                          </Constraints>
-                        </Component>
-                        <Component class="javax.swing.JCheckBox" name="jCheckBox1">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="Pret RAM &lt;300"/>
+                            <Property name="text" type="java.lang.String" value="SSD"/>
                             <Property name="opaque" type="boolean" value="false"/>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox1ActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SSD_TipActionPerformed"/>
                           </Events>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="20" y="130" width="-1" height="-1"/>
+                              <AbsoluteConstraints x="80" y="50" width="-1" height="-1"/>
                             </Constraint>
                           </Constraints>
                         </Component>
-                        <Component class="javax.swing.JCheckBox" name="jCheckBox2">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="Comunicare Simpla"/>
-                            <Property name="opaque" type="boolean" value="false"/>
-                          </Properties>
+                        <Container class="javax.swing.JLayeredPane" name="jLayeredPane_Filtre">
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="130" y="130" width="-1" height="-1"/>
+                              <AbsoluteConstraints x="10" y="130" width="430" height="210"/>
                             </Constraint>
                           </Constraints>
-                        </Component>
-                        <Component class="javax.swing.JCheckBox" name="jCheckBox3">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="Pret HDD &gt;2000"/>
-                            <Property name="actionCommand" type="java.lang.String" value=""/>
-                            <Property name="opaque" type="boolean" value="false"/>
-                          </Properties>
-                          <Constraints>
-                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="270" y="130" width="130" height="-1"/>
-                            </Constraint>
-                          </Constraints>
-                        </Component>
-                        <Component class="com.k33ptoo.components.KButton" name="btn_filtre_RAM">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="Filtre Ram"/>
-                            <Property name="kHoverColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="dc" green="c5" red="77" type="rgb"/>
-                            </Property>
-                            <Property name="kHoverEndColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="dc" green="c5" red="77" type="rgb"/>
-                            </Property>
-                            <Property name="kHoverForeGround" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="e7" green="d9" red="bc" type="rgb"/>
-                            </Property>
-                            <Property name="kHoverStartColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="49" green="a8" red="29" type="rgb"/>
-                            </Property>
-                            <Property name="kPressedColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="9c" green="77" red="dc" type="rgb"/>
-                            </Property>
-                            <Property name="kStartColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="dc" green="c5" red="77" type="rgb"/>
-                            </Property>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_filtre_RAMMouseClicked"/>
-                            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_filtre_RAMMouseEntered"/>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_filtre_RAMActionPerformed"/>
-                          </Events>
-                          <Constraints>
-                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="10" y="160" width="100" height="-1"/>
-                            </Constraint>
-                          </Constraints>
-                        </Component>
-                        <Component class="com.k33ptoo.components.KButton" name="btn_filtre_SSD">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="Filtre SSD"/>
-                            <Property name="kHoverColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="dc" green="c5" red="77" type="rgb"/>
-                            </Property>
-                            <Property name="kHoverEndColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="dc" green="c5" red="77" type="rgb"/>
-                            </Property>
-                            <Property name="kHoverForeGround" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="e7" green="d9" red="bc" type="rgb"/>
-                            </Property>
-                            <Property name="kHoverStartColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="49" green="a8" red="29" type="rgb"/>
-                            </Property>
-                            <Property name="kPressedColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="9c" green="77" red="dc" type="rgb"/>
-                            </Property>
-                            <Property name="kStartColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="dc" green="c5" red="77" type="rgb"/>
-                            </Property>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_filtre_SSDActionPerformed"/>
-                          </Events>
-                          <Constraints>
-                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="10" y="160" width="100" height="-1"/>
-                            </Constraint>
-                          </Constraints>
-                        </Component>
-                        <Component class="com.k33ptoo.components.KButton" name="btn_filtre_HDD">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="Filtre HDD"/>
-                            <Property name="kHoverColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="dc" green="c5" red="77" type="rgb"/>
-                            </Property>
-                            <Property name="kHoverEndColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="dc" green="c5" red="77" type="rgb"/>
-                            </Property>
-                            <Property name="kHoverForeGround" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="e7" green="d9" red="bc" type="rgb"/>
-                            </Property>
-                            <Property name="kHoverStartColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="49" green="a8" red="29" type="rgb"/>
-                            </Property>
-                            <Property name="kPressedColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="9c" green="77" red="dc" type="rgb"/>
-                            </Property>
-                            <Property name="kStartColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="dc" green="c5" red="77" type="rgb"/>
-                            </Property>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_filtre_HDDMouseClicked"/>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_filtre_HDDActionPerformed"/>
-                          </Events>
-                          <Constraints>
-                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="10" y="160" width="100" height="-1"/>
-                            </Constraint>
-                          </Constraints>
-                        </Component>
+
+                          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
+                          <SubComponents>
+                            <Container class="javax.swing.JPanel" name="pnl_Filtre_Major_RAM">
+                              <Properties>
+                                <Property name="opaque" type="boolean" value="false"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                                  <CardConstraints cardName="card2"/>
+                                </Constraint>
+                              </Constraints>
+
+                              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+                                <Property name="useNullLayout" type="boolean" value="false"/>
+                              </Layout>
+                              <SubComponents>
+                                <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+                                  <Properties>
+                                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                      <Color blue="dc" green="c5" red="77" type="rgb"/>
+                                    </Property>
+                                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                      <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                                        <BevelBorder/>
+                                      </Border>
+                                    </Property>
+                                    <Property name="opaque" type="boolean" value="false"/>
+                                  </Properties>
+                                  <Constraints>
+                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                      <AbsoluteConstraints x="0" y="0" width="330" height="170"/>
+                                    </Constraint>
+                                  </Constraints>
+
+                                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                                  <SubComponents>
+                                    <Container class="javax.swing.JPanel" name="pnl_Filtre_Ram">
+                                      <Properties>
+                                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                          <Color blue="dc" green="c5" red="77" type="rgb"/>
+                                        </Property>
+                                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                                            <BevelBorder/>
+                                          </Border>
+                                        </Property>
+                                        <Property name="opaque" type="boolean" value="false"/>
+                                      </Properties>
+
+                                      <Layout>
+                                        <DimensionLayout dim="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Group type="102" attributes="0">
+                                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                              <Component id="voltajRam" max="32767" attributes="0"/>
+                                                              <Component id="latentaRam" max="32767" attributes="0"/>
+                                                              <Component id="pretRam" max="32767" attributes="0"/>
+                                                              <Component id="comunicareRam" max="32767" attributes="0"/>
+                                                              <Component id="frecventaRam" alignment="0" max="32767" attributes="0"/>
+                                                          </Group>
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Group type="102" alignment="0" attributes="0">
+                                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                                  <Component id="listaTipuriComunicariRam" min="-2" max="-2" attributes="0"/>
+                                                              </Group>
+                                                              <Group type="102" alignment="0" attributes="0">
+                                                                  <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                                                                  <Component id="pretRamSlider" min="-2" pref="150" max="-2" attributes="0"/>
+                                                                  <EmptySpace max="-2" attributes="0"/>
+                                                                  <Component id="valoare_Slider_Pret_Ram" min="-2" max="-2" attributes="0"/>
+                                                              </Group>
+                                                              <Group type="102" alignment="0" attributes="0">
+                                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                                  <Component id="listaVoltajRam" min="-2" max="-2" attributes="0"/>
+                                                              </Group>
+                                                              <Group type="102" alignment="0" attributes="0">
+                                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                                      <Component id="listaFrecventeRam" min="-2" max="-2" attributes="0"/>
+                                                                      <Component id="listaTipuriLatenteRam" min="-2" max="-2" attributes="0"/>
+                                                                  </Group>
+                                                              </Group>
+                                                          </Group>
+                                                      </Group>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                              <Component id="capacitateRam" max="32767" attributes="0"/>
+                                                              <Component id="tipMemorieRam" max="32767" attributes="0"/>
+                                                          </Group>
+                                                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Component id="listaTipuriMemorieRam" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="listaCapacitateRam" min="-2" max="-2" attributes="0"/>
+                                                          </Group>
+                                                      </Group>
+                                                  </Group>
+                                                  <EmptySpace max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                        </DimensionLayout>
+                                        <DimensionLayout dim="1">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="2" attributes="0">
+                                                      <Component id="valoare_Slider_Pret_Ram" alignment="2" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="pretRamSlider" alignment="2" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="pretRam" alignment="2" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="3" attributes="0">
+                                                      <Component id="comunicareRam" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="listaTipuriComunicariRam" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="3" attributes="0">
+                                                      <Component id="frecventaRam" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="listaFrecventeRam" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="3" attributes="0">
+                                                      <Component id="latentaRam" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="listaTipuriLatenteRam" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="2" attributes="0">
+                                                      <Component id="voltajRam" alignment="2" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="listaVoltajRam" alignment="2" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="2" attributes="0">
+                                                      <Component id="listaTipuriMemorieRam" alignment="2" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="tipMemorieRam" alignment="2" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="3" attributes="0">
+                                                      <Component id="capacitateRam" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="listaCapacitateRam" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace pref="56" max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                        </DimensionLayout>
+                                      </Layout>
+                                      <SubComponents>
+                                        <Component class="javax.swing.JCheckBox" name="pretRam">
+                                          <Properties>
+                                            <Property name="text" type="java.lang.String" value="Pret"/>
+                                            <Property name="opaque" type="boolean" value="false"/>
+                                          </Properties>
+                                          <Events>
+                                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pretRamActionPerformed"/>
+                                          </Events>
+                                        </Component>
+                                        <Component class="javax.swing.JSlider" name="pretRamSlider">
+                                          <Properties>
+                                            <Property name="opaque" type="boolean" value="false"/>
+                                          </Properties>
+                                          <Events>
+                                            <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="pretRamSliderMouseDragged"/>
+                                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="pretRamSliderMouseClicked"/>
+                                          </Events>
+                                        </Component>
+                                        <Component class="javax.swing.JComboBox" name="listaTipuriComunicariRam">
+                                          <Properties>
+                                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                              <StringArray count="4">
+                                                <StringItem index="0" value="Item 1"/>
+                                                <StringItem index="1" value="Item 2"/>
+                                                <StringItem index="2" value="Item 3"/>
+                                                <StringItem index="3" value="Item 4"/>
+                                              </StringArray>
+                                            </Property>
+                                            <Property name="opaque" type="boolean" value="false"/>
+                                          </Properties>
+                                          <AuxValues>
+                                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                                          </AuxValues>
+                                        </Component>
+                                        <Component class="javax.swing.JLabel" name="valoare_Slider_Pret_Ram">
+                                          <Properties>
+                                            <Property name="text" type="java.lang.String" value="Valoare&#xa;"/>
+                                          </Properties>
+                                        </Component>
+                                        <Component class="javax.swing.JCheckBox" name="comunicareRam">
+                                          <Properties>
+                                            <Property name="text" type="java.lang.String" value="Comunicare"/>
+                                            <Property name="opaque" type="boolean" value="false"/>
+                                          </Properties>
+                                          <Events>
+                                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="comunicareRamMouseClicked"/>
+                                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comunicareRamActionPerformed"/>
+                                          </Events>
+                                        </Component>
+                                        <Component class="javax.swing.JCheckBox" name="frecventaRam">
+                                          <Properties>
+                                            <Property name="text" type="java.lang.String" value="Frecventa"/>
+                                          </Properties>
+                                          <Events>
+                                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="frecventaRamMouseClicked"/>
+                                          </Events>
+                                        </Component>
+                                        <Component class="javax.swing.JCheckBox" name="latentaRam">
+                                          <Properties>
+                                            <Property name="text" type="java.lang.String" value="Latenta"/>
+                                          </Properties>
+                                          <Events>
+                                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="latentaRamMouseClicked"/>
+                                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="latentaRamActionPerformed"/>
+                                          </Events>
+                                        </Component>
+                                        <Component class="javax.swing.JComboBox" name="listaTipuriLatenteRam">
+                                          <Properties>
+                                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                              <StringArray count="4">
+                                                <StringItem index="0" value="Item 1"/>
+                                                <StringItem index="1" value="Item 2"/>
+                                                <StringItem index="2" value="Item 3"/>
+                                                <StringItem index="3" value="Item 4"/>
+                                              </StringArray>
+                                            </Property>
+                                          </Properties>
+                                          <AuxValues>
+                                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                                          </AuxValues>
+                                        </Component>
+                                        <Component class="javax.swing.JCheckBox" name="voltajRam">
+                                          <Properties>
+                                            <Property name="text" type="java.lang.String" value="Voltaj"/>
+                                          </Properties>
+                                          <Events>
+                                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="voltajRamMouseClicked"/>
+                                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="voltajRamActionPerformed"/>
+                                          </Events>
+                                        </Component>
+                                        <Component class="javax.swing.JComboBox" name="listaVoltajRam">
+                                          <Properties>
+                                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                              <StringArray count="4">
+                                                <StringItem index="0" value="Item 1"/>
+                                                <StringItem index="1" value="Item 2"/>
+                                                <StringItem index="2" value="Item 3"/>
+                                                <StringItem index="3" value="Item 4"/>
+                                              </StringArray>
+                                            </Property>
+                                          </Properties>
+                                          <AuxValues>
+                                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                                          </AuxValues>
+                                        </Component>
+                                        <Component class="javax.swing.JCheckBox" name="tipMemorieRam">
+                                          <Properties>
+                                            <Property name="text" type="java.lang.String" value="Tip Memorie"/>
+                                          </Properties>
+                                          <Events>
+                                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tipMemorieRamMouseClicked"/>
+                                          </Events>
+                                        </Component>
+                                        <Component class="javax.swing.JComboBox" name="listaTipuriMemorieRam">
+                                          <Properties>
+                                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                              <StringArray count="4">
+                                                <StringItem index="0" value="Item 1"/>
+                                                <StringItem index="1" value="Item 2"/>
+                                                <StringItem index="2" value="Item 3"/>
+                                                <StringItem index="3" value="Item 4"/>
+                                              </StringArray>
+                                            </Property>
+                                          </Properties>
+                                          <AuxValues>
+                                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                                          </AuxValues>
+                                        </Component>
+                                        <Component class="javax.swing.JCheckBox" name="capacitateRam">
+                                          <Properties>
+                                            <Property name="text" type="java.lang.String" value="Capacitate"/>
+                                          </Properties>
+                                        </Component>
+                                        <Component class="javax.swing.JComboBox" name="listaCapacitateRam">
+                                          <Properties>
+                                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                              <StringArray count="4">
+                                                <StringItem index="0" value="Item 1"/>
+                                                <StringItem index="1" value="Item 2"/>
+                                                <StringItem index="2" value="Item 3"/>
+                                                <StringItem index="3" value="Item 4"/>
+                                              </StringArray>
+                                            </Property>
+                                          </Properties>
+                                          <AuxValues>
+                                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                                          </AuxValues>
+                                        </Component>
+                                        <Component class="javax.swing.JComboBox" name="listaFrecventeRam">
+                                          <Properties>
+                                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                              <StringArray count="4">
+                                                <StringItem index="0" value="Item 1"/>
+                                                <StringItem index="1" value="Item 2"/>
+                                                <StringItem index="2" value="Item 3"/>
+                                                <StringItem index="3" value="Item 4"/>
+                                              </StringArray>
+                                            </Property>
+                                          </Properties>
+                                          <AuxValues>
+                                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                                          </AuxValues>
+                                        </Component>
+                                      </SubComponents>
+                                    </Container>
+                                  </SubComponents>
+                                </Container>
+                                <Component class="com.k33ptoo.components.KButton" name="btn_filtre_RAM">
+                                  <Properties>
+                                    <Property name="text" type="java.lang.String" value="Filtre Ram"/>
+                                    <Property name="kHoverColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                      <Color blue="dc" green="c5" red="77" type="rgb"/>
+                                    </Property>
+                                    <Property name="kHoverEndColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                      <Color blue="dc" green="c5" red="77" type="rgb"/>
+                                    </Property>
+                                    <Property name="kHoverForeGround" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                      <Color blue="e7" green="d9" red="bc" type="rgb"/>
+                                    </Property>
+                                    <Property name="kHoverStartColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                      <Color blue="49" green="a8" red="29" type="rgb"/>
+                                    </Property>
+                                    <Property name="kPressedColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                      <Color blue="9c" green="77" red="dc" type="rgb"/>
+                                    </Property>
+                                    <Property name="kStartColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                      <Color blue="dc" green="c5" red="77" type="rgb"/>
+                                    </Property>
+                                  </Properties>
+                                  <Events>
+                                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_filtre_RAMMouseClicked"/>
+                                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_filtre_RAMMouseEntered"/>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_filtre_RAMActionPerformed"/>
+                                  </Events>
+                                  <Constraints>
+                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                      <AbsoluteConstraints x="330" y="0" width="100" height="-1"/>
+                                    </Constraint>
+                                  </Constraints>
+                                </Component>
+                              </SubComponents>
+                            </Container>
+                            <Container class="javax.swing.JPanel" name="pnl_Filtre_Major_HDD">
+                              <Properties>
+                                <Property name="opaque" type="boolean" value="false"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                                  <CardConstraints cardName="card2"/>
+                                </Constraint>
+                              </Constraints>
+
+                              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+                                <Property name="useNullLayout" type="boolean" value="false"/>
+                              </Layout>
+                              <SubComponents>
+                                <Container class="javax.swing.JScrollPane" name="jScrollPane5">
+                                  <Properties>
+                                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                      <Color blue="dc" green="c5" red="77" type="rgb"/>
+                                    </Property>
+                                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                      <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                                        <BevelBorder/>
+                                      </Border>
+                                    </Property>
+                                    <Property name="opaque" type="boolean" value="false"/>
+                                  </Properties>
+                                  <Constraints>
+                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                      <AbsoluteConstraints x="0" y="0" width="330" height="170"/>
+                                    </Constraint>
+                                  </Constraints>
+
+                                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                                  <SubComponents>
+                                    <Container class="javax.swing.JPanel" name="pnl_Filtre_HDD">
+                                      <Properties>
+                                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                          <Color blue="dc" green="c5" red="77" type="rgb"/>
+                                        </Property>
+                                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                                            <BevelBorder/>
+                                          </Border>
+                                        </Property>
+                                        <Property name="opaque" type="boolean" value="false"/>
+                                      </Properties>
+
+                                      <Layout>
+                                        <DimensionLayout dim="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                              <Component id="pretHDD" max="32767" attributes="0"/>
+                                                              <Component id="vitezaRotatieHDD" alignment="0" max="32767" attributes="0"/>
+                                                              <Component id="tipMemorieHDD" alignment="0" max="32767" attributes="0"/>
+                                                              <Component id="capacitateHDD" alignment="0" max="32767" attributes="0"/>
+                                                          </Group>
+                                                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Component id="listaCapacitatiHDD" min="-2" max="-2" attributes="0"/>
+                                                              <Group type="102" alignment="0" attributes="0">
+                                                                  <Component id="sliderPretHDD" min="-2" pref="150" max="-2" attributes="0"/>
+                                                                  <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                                                                  <Component id="valoare_Slider_Pret_HDD" min="-2" max="-2" attributes="0"/>
+                                                              </Group>
+                                                              <Component id="listaVitezeRotatieHDD" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="listaTipuriMemorieHDD" min="-2" max="-2" attributes="0"/>
+                                                          </Group>
+                                                      </Group>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="tipComunicareHDD" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace max="-2" attributes="0"/>
+                                                          <Component id="listaTipComunicareHDD" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                                  <EmptySpace pref="24" max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                        </DimensionLayout>
+                                        <DimensionLayout dim="1">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="2" attributes="0">
+                                                      <Component id="valoare_Slider_Pret_HDD" alignment="2" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="pretHDD" alignment="2" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="sliderPretHDD" alignment="2" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="vitezaRotatieHDD" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="listaVitezeRotatieHDD" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="3" attributes="0">
+                                                      <Component id="tipMemorieHDD" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="listaTipuriMemorieHDD" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="2" attributes="0">
+                                                      <Component id="listaCapacitatiHDD" alignment="2" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="capacitateHDD" alignment="2" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="tipComunicareHDD" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="listaTipComunicareHDD" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                        </DimensionLayout>
+                                      </Layout>
+                                      <SubComponents>
+                                        <Component class="javax.swing.JSlider" name="sliderPretHDD">
+                                          <Properties>
+                                            <Property name="opaque" type="boolean" value="false"/>
+                                          </Properties>
+                                          <Events>
+                                            <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="sliderPretHDDMouseDragged"/>
+                                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="sliderPretHDDMouseClicked"/>
+                                          </Events>
+                                        </Component>
+                                        <Component class="javax.swing.JCheckBox" name="pretHDD">
+                                          <Properties>
+                                            <Property name="text" type="java.lang.String" value="Pret"/>
+                                          </Properties>
+                                        </Component>
+                                        <Component class="javax.swing.JLabel" name="valoare_Slider_Pret_HDD">
+                                          <Properties>
+                                            <Property name="text" type="java.lang.String" value="Valoare"/>
+                                          </Properties>
+                                        </Component>
+                                        <Component class="javax.swing.JCheckBox" name="vitezaRotatieHDD">
+                                          <Properties>
+                                            <Property name="text" type="java.lang.String" value="Viteza Rotatie"/>
+                                          </Properties>
+                                        </Component>
+                                        <Component class="javax.swing.JComboBox" name="listaVitezeRotatieHDD">
+                                          <Properties>
+                                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                              <StringArray count="4">
+                                                <StringItem index="0" value="Item 1"/>
+                                                <StringItem index="1" value="Item 2"/>
+                                                <StringItem index="2" value="Item 3"/>
+                                                <StringItem index="3" value="Item 4"/>
+                                              </StringArray>
+                                            </Property>
+                                          </Properties>
+                                          <AuxValues>
+                                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                                          </AuxValues>
+                                        </Component>
+                                        <Component class="javax.swing.JCheckBox" name="tipMemorieHDD">
+                                          <Properties>
+                                            <Property name="text" type="java.lang.String" value="Tip Memorie"/>
+                                          </Properties>
+                                        </Component>
+                                        <Component class="javax.swing.JComboBox" name="listaTipuriMemorieHDD">
+                                          <Properties>
+                                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                              <StringArray count="4">
+                                                <StringItem index="0" value="Item 1"/>
+                                                <StringItem index="1" value="Item 2"/>
+                                                <StringItem index="2" value="Item 3"/>
+                                                <StringItem index="3" value="Item 4"/>
+                                              </StringArray>
+                                            </Property>
+                                          </Properties>
+                                          <AuxValues>
+                                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                                          </AuxValues>
+                                        </Component>
+                                        <Component class="javax.swing.JCheckBox" name="capacitateHDD">
+                                          <Properties>
+                                            <Property name="text" type="java.lang.String" value="Capacitate"/>
+                                          </Properties>
+                                        </Component>
+                                        <Component class="javax.swing.JComboBox" name="listaCapacitatiHDD">
+                                          <Properties>
+                                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                              <StringArray count="4">
+                                                <StringItem index="0" value="Item 1"/>
+                                                <StringItem index="1" value="Item 2"/>
+                                                <StringItem index="2" value="Item 3"/>
+                                                <StringItem index="3" value="Item 4"/>
+                                              </StringArray>
+                                            </Property>
+                                          </Properties>
+                                          <AuxValues>
+                                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                                          </AuxValues>
+                                        </Component>
+                                        <Component class="javax.swing.JCheckBox" name="tipComunicareHDD">
+                                          <Properties>
+                                            <Property name="text" type="java.lang.String" value="Tip Comunicare"/>
+                                          </Properties>
+                                        </Component>
+                                        <Component class="javax.swing.JComboBox" name="listaTipComunicareHDD">
+                                          <Properties>
+                                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                              <StringArray count="4">
+                                                <StringItem index="0" value="Item 1"/>
+                                                <StringItem index="1" value="Item 2"/>
+                                                <StringItem index="2" value="Item 3"/>
+                                                <StringItem index="3" value="Item 4"/>
+                                              </StringArray>
+                                            </Property>
+                                          </Properties>
+                                          <AuxValues>
+                                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                                          </AuxValues>
+                                        </Component>
+                                      </SubComponents>
+                                    </Container>
+                                  </SubComponents>
+                                </Container>
+                                <Component class="com.k33ptoo.components.KButton" name="btn_filtre_HDD">
+                                  <Properties>
+                                    <Property name="text" type="java.lang.String" value="Filtre HDD"/>
+                                    <Property name="kHoverColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                      <Color blue="dc" green="c5" red="77" type="rgb"/>
+                                    </Property>
+                                    <Property name="kHoverEndColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                      <Color blue="dc" green="c5" red="77" type="rgb"/>
+                                    </Property>
+                                    <Property name="kHoverForeGround" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                      <Color blue="e7" green="d9" red="bc" type="rgb"/>
+                                    </Property>
+                                    <Property name="kHoverStartColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                      <Color blue="49" green="a8" red="29" type="rgb"/>
+                                    </Property>
+                                    <Property name="kPressedColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                      <Color blue="9c" green="77" red="dc" type="rgb"/>
+                                    </Property>
+                                    <Property name="kStartColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                      <Color blue="dc" green="c5" red="77" type="rgb"/>
+                                    </Property>
+                                  </Properties>
+                                  <Events>
+                                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_filtre_HDDMouseClicked"/>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_filtre_HDDActionPerformed"/>
+                                  </Events>
+                                  <Constraints>
+                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                      <AbsoluteConstraints x="330" y="0" width="100" height="-1"/>
+                                    </Constraint>
+                                  </Constraints>
+                                </Component>
+                              </SubComponents>
+                            </Container>
+                            <Container class="javax.swing.JPanel" name="pnl_Filtre_Major_SSD">
+                              <Properties>
+                                <Property name="opaque" type="boolean" value="false"/>
+                              </Properties>
+                              <Constraints>
+                                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                                  <CardConstraints cardName="card2"/>
+                                </Constraint>
+                              </Constraints>
+
+                              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+                                <Property name="useNullLayout" type="boolean" value="false"/>
+                              </Layout>
+                              <SubComponents>
+                                <Container class="javax.swing.JScrollPane" name="jScrollPane4">
+                                  <Properties>
+                                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                      <Color blue="dc" green="c5" red="77" type="rgb"/>
+                                    </Property>
+                                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                      <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                                        <BevelBorder/>
+                                      </Border>
+                                    </Property>
+                                    <Property name="opaque" type="boolean" value="false"/>
+                                  </Properties>
+                                  <Constraints>
+                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                      <AbsoluteConstraints x="0" y="0" width="330" height="170"/>
+                                    </Constraint>
+                                  </Constraints>
+
+                                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                                  <SubComponents>
+                                    <Container class="javax.swing.JPanel" name="pnl_Filtre_SSD">
+                                      <Properties>
+                                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                          <Color blue="dc" green="c5" red="77" type="rgb"/>
+                                        </Property>
+                                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                                          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+                                            <BevelBorder/>
+                                          </Border>
+                                        </Property>
+                                        <Property name="opaque" type="boolean" value="false"/>
+                                      </Properties>
+
+                                      <Layout>
+                                        <DimensionLayout dim="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="1" attributes="0">
+                                                      <Component id="tipComunicareSSD" max="32767" attributes="0"/>
+                                                      <Component id="capacitateSSD" max="32767" attributes="0"/>
+                                                      <Component id="tipControlSSD" alignment="1" max="32767" attributes="0"/>
+                                                      <Component id="formFactorSSD" alignment="0" max="32767" attributes="0"/>
+                                                      <Group type="102" alignment="1" attributes="0">
+                                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                                          <Component id="pretSSD" min="-2" pref="92" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Component id="tipMemorieSSD" alignment="0" max="32767" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="listaTipMemorieSSD" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="listFormFactorSSD" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="sliderPretSSD" min="-2" pref="155" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                                                          <Component id="valoare_Slider_Pret_SSD" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Component id="listaTipControlsSSD" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="listaCapacitatiSSD" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="listaTipComunicareSSD" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                        </DimensionLayout>
+                                        <DimensionLayout dim="1">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="2" attributes="0">
+                                                      <Component id="pretSSD" alignment="2" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="sliderPretSSD" alignment="2" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="valoare_Slider_Pret_SSD" alignment="2" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="2" attributes="0">
+                                                      <Component id="listFormFactorSSD" alignment="2" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="formFactorSSD" alignment="2" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="2" attributes="0">
+                                                      <Component id="tipControlSSD" alignment="2" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="listaTipControlsSSD" alignment="2" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="2" attributes="0">
+                                                      <Component id="listaTipMemorieSSD" alignment="2" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="tipMemorieSSD" alignment="2" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="3" attributes="0">
+                                                      <Component id="capacitateSSD" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                                                      <Component id="listaCapacitatiSSD" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace max="32767" attributes="0"/>
+                                                  <Group type="103" groupAlignment="3" attributes="0">
+                                                      <Component id="tipComunicareSSD" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="listaTipComunicareSSD" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
+                                        </DimensionLayout>
+                                      </Layout>
+                                      <SubComponents>
+                                        <Component class="javax.swing.JSlider" name="sliderPretSSD">
+                                          <Properties>
+                                            <Property name="opaque" type="boolean" value="false"/>
+                                          </Properties>
+                                          <Events>
+                                            <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="sliderPretSSDMouseDragged"/>
+                                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="sliderPretSSDMouseClicked"/>
+                                          </Events>
+                                        </Component>
+                                        <Component class="javax.swing.JCheckBox" name="pretSSD">
+                                          <Properties>
+                                            <Property name="text" type="java.lang.String" value="Pret"/>
+                                          </Properties>
+                                          <Events>
+                                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pretSSDActionPerformed"/>
+                                          </Events>
+                                        </Component>
+                                        <Component class="javax.swing.JLabel" name="valoare_Slider_Pret_SSD">
+                                          <Properties>
+                                            <Property name="text" type="java.lang.String" value="Valoare"/>
+                                          </Properties>
+                                        </Component>
+                                        <Component class="javax.swing.JCheckBox" name="formFactorSSD">
+                                          <Properties>
+                                            <Property name="text" type="java.lang.String" value="Form Factor"/>
+                                          </Properties>
+                                          <Events>
+                                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formFactorSSDActionPerformed"/>
+                                          </Events>
+                                        </Component>
+                                        <Component class="javax.swing.JComboBox" name="listFormFactorSSD">
+                                          <Properties>
+                                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                              <StringArray count="4">
+                                                <StringItem index="0" value="Item 1"/>
+                                                <StringItem index="1" value="Item 2"/>
+                                                <StringItem index="2" value="Item 3"/>
+                                                <StringItem index="3" value="Item 4"/>
+                                              </StringArray>
+                                            </Property>
+                                          </Properties>
+                                          <Events>
+                                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listFormFactorSSDActionPerformed"/>
+                                          </Events>
+                                          <AuxValues>
+                                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                                          </AuxValues>
+                                        </Component>
+                                        <Component class="javax.swing.JCheckBox" name="tipControlSSD">
+                                          <Properties>
+                                            <Property name="text" type="java.lang.String" value="Tip Controler"/>
+                                          </Properties>
+                                        </Component>
+                                        <Component class="javax.swing.JComboBox" name="listaTipControlsSSD">
+                                          <Properties>
+                                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                              <StringArray count="4">
+                                                <StringItem index="0" value="Item 1"/>
+                                                <StringItem index="1" value="Item 2"/>
+                                                <StringItem index="2" value="Item 3"/>
+                                                <StringItem index="3" value="Item 4"/>
+                                              </StringArray>
+                                            </Property>
+                                          </Properties>
+                                          <AuxValues>
+                                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                                          </AuxValues>
+                                        </Component>
+                                        <Component class="javax.swing.JCheckBox" name="tipMemorieSSD">
+                                          <Properties>
+                                            <Property name="text" type="java.lang.String" value="Tip Memorie"/>
+                                          </Properties>
+                                          <Events>
+                                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tipMemorieSSDActionPerformed"/>
+                                          </Events>
+                                        </Component>
+                                        <Component class="javax.swing.JComboBox" name="listaTipMemorieSSD">
+                                          <Properties>
+                                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                              <StringArray count="4">
+                                                <StringItem index="0" value="Item 1"/>
+                                                <StringItem index="1" value="Item 2"/>
+                                                <StringItem index="2" value="Item 3"/>
+                                                <StringItem index="3" value="Item 4"/>
+                                              </StringArray>
+                                            </Property>
+                                          </Properties>
+                                          <AuxValues>
+                                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                                          </AuxValues>
+                                        </Component>
+                                        <Component class="javax.swing.JCheckBox" name="capacitateSSD">
+                                          <Properties>
+                                            <Property name="text" type="java.lang.String" value="Capacitate"/>
+                                          </Properties>
+                                          <Events>
+                                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="capacitateSSDActionPerformed"/>
+                                          </Events>
+                                        </Component>
+                                        <Component class="javax.swing.JComboBox" name="listaCapacitatiSSD">
+                                          <Properties>
+                                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                              <StringArray count="4">
+                                                <StringItem index="0" value="Item 1"/>
+                                                <StringItem index="1" value="Item 2"/>
+                                                <StringItem index="2" value="Item 3"/>
+                                                <StringItem index="3" value="Item 4"/>
+                                              </StringArray>
+                                            </Property>
+                                          </Properties>
+                                          <AuxValues>
+                                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                                          </AuxValues>
+                                        </Component>
+                                        <Component class="javax.swing.JCheckBox" name="tipComunicareSSD">
+                                          <Properties>
+                                            <Property name="text" type="java.lang.String" value="Tip Comunicare"/>
+                                          </Properties>
+                                        </Component>
+                                        <Component class="javax.swing.JComboBox" name="listaTipComunicareSSD">
+                                          <Properties>
+                                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                                              <StringArray count="4">
+                                                <StringItem index="0" value="Item 1"/>
+                                                <StringItem index="1" value="Item 2"/>
+                                                <StringItem index="2" value="Item 3"/>
+                                                <StringItem index="3" value="Item 4"/>
+                                              </StringArray>
+                                            </Property>
+                                          </Properties>
+                                          <AuxValues>
+                                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                                          </AuxValues>
+                                        </Component>
+                                      </SubComponents>
+                                    </Container>
+                                  </SubComponents>
+                                </Container>
+                                <Component class="com.k33ptoo.components.KButton" name="btn_filtre_SSD">
+                                  <Properties>
+                                    <Property name="text" type="java.lang.String" value="Filtre SSD"/>
+                                    <Property name="kHoverColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                      <Color blue="dc" green="c5" red="77" type="rgb"/>
+                                    </Property>
+                                    <Property name="kHoverEndColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                      <Color blue="dc" green="c5" red="77" type="rgb"/>
+                                    </Property>
+                                    <Property name="kHoverForeGround" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                      <Color blue="e7" green="d9" red="bc" type="rgb"/>
+                                    </Property>
+                                    <Property name="kHoverStartColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                      <Color blue="49" green="a8" red="29" type="rgb"/>
+                                    </Property>
+                                    <Property name="kPressedColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                      <Color blue="9c" green="77" red="dc" type="rgb"/>
+                                    </Property>
+                                    <Property name="kStartColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                      <Color blue="dc" green="c5" red="77" type="rgb"/>
+                                    </Property>
+                                  </Properties>
+                                  <Events>
+                                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_filtre_SSDMouseClicked"/>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_filtre_SSDActionPerformed"/>
+                                  </Events>
+                                  <Constraints>
+                                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                                      <AbsoluteConstraints x="330" y="0" width="100" height="-1"/>
+                                    </Constraint>
+                                  </Constraints>
+                                </Component>
+                              </SubComponents>
+                            </Container>
+                          </SubComponents>
+                        </Container>
                       </SubComponents>
                     </Container>
                   </SubComponents>
                 </Container>
+                <Component class="javax.swing.JLabel" name="jLabel3">
+                </Component>
               </SubComponents>
             </Container>
             <Container class="keeptoo.KGradientPanel" name="panel_info_Setari">
@@ -819,7 +1622,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="793" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="705" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -827,7 +1630,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="360" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="549" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -860,7 +1663,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel6" min="-2" pref="168" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="752" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="664" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -868,7 +1671,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="360" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="549" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>

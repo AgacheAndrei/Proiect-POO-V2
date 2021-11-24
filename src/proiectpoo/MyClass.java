@@ -28,14 +28,16 @@ public  class MyClass implements Serializable {
         HDD hdd4=new HDD("N300", "Toshiba", false, (float) 2268.97, 2021 , "Surveillance", 14000, "Sata/600", 7200);
         HDD hdd5=new HDD("HD2D100", "Toshiba", true, (float) 199.99, 2018 , "Desktop", 1000, "Sata 3", 7200);
         
-        SSD ssd5=new SSD("Samsung 870 EVO", "Samsung", false, (float)389.00, 2019, "2.5\"", "Samsung",500,"MLC", "Sata 3");
+        SSD ssd5=new SSD("Samsung 870 EVO", "Samsung", false, (float)300.00, 2019, "2.5\"", "Samsung",500,"MLC", "Sata 3");
         SSD ssd6=new SSD("Samusng 840 EVO Basic", "Samsung", true, (float)390.00, 2021, "2.5\"", "Samsung",480,"TLC", "Sata 3");
         SSD ssd7=new SSD("XPG GAMMIX S11 PRO", "ADATA", true, (float)236.00, 2021, "M.2", "SMI",500,"TLC", "PCle");
+        SSD ssd10=new SSD("Kingston A400 Lite", "Kingston", true, (float)132.50, 2019, "2.5", "Kingston",120,"TLC", "Sata 3");
         
         RAM ram6=new RAM("ADATA Premier", "ADATA ", false, (float)98.72, 2020, 1600, "CL11", (float)1.35, "DDR3", 4, "Single channel");
         RAM ram7=new RAM("Memorie laptop TeamGroup", "TeamGroup ", true, (float)97.00, 2018,1600, "CL11", (float)1.35, "DDR3", 4, " PC3-12800");
         RAM ram10=new RAM("Corsair Vengeance RGB PRO", "Corsair", true, (float)1052.98, 2021, 3600, "CL18", (float)1.35, "DDR4", 32, "Quad  channel");
         RAM ram5=new RAM("Memorie Kingston 4GB", "Kingston", true, (float)95.99, 2017, 1600, "CL11", (float)1.35, "DDR3", 4, "Single channel");
+        RAM ram9=new RAM("Fury Black PRO", "HyperX", true, (float)440.99, 2021, 2666, "CL16", (float)1.2, "DDR4", 8, "Single channel");
         
         PlacaCaptura pc2 = new PlacaCaptura("Placa de captura Elgato Game Capture HD60 PRO" , "Elgato" , true , 979f , 2020 , "HDMI" , "4k60, 1080p60, 108030p, 720p60 , 720p30, 480p " , "HDMI" , (byte)2 );
         PlacaCaptura pc3 = new PlacaCaptura("Placa de captura Elgato Cam Link 4k" , "Elgato" , true , 599f , 2019 , "USB 3.0" , "4k60, 1080p60, 108030p, 720p60 " , "HDMI" , (byte)1 );
@@ -70,11 +72,13 @@ public  class MyClass implements Serializable {
     objectOutputStream.writeObject(ssd7);
     objectOutputStream.writeObject(ssd6);
     objectOutputStream.writeObject(ssd5);
+     objectOutputStream.writeObject(ssd10);
     
     objectOutputStream.writeObject(ram7);
     objectOutputStream.writeObject(ram6);
     objectOutputStream.writeObject(ram10);
     objectOutputStream.writeObject(ram5);
+    objectOutputStream.writeObject(ram9);
      
     objectOutputStream.writeObject(pc3);
     objectOutputStream.writeObject(pc4);
@@ -110,7 +114,7 @@ public  class MyClass implements Serializable {
         };
 
         os2.writeObject(hdd5);
-         os2.writeObject(pc2);
+        os2.writeObject(pc2);
         os2.close();
     
     

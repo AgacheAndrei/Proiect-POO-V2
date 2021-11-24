@@ -17,13 +17,21 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Action;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import sun.text.resources.zh.JavaTimeSupplementary_zh_TW;
 
 /**
@@ -37,12 +45,23 @@ public class Interfata_Principala extends javax.swing.JFrame {
      * Creates new form Interfata_Principala
      */
     public Interfata_Principala() {
-        initComponents(); 
-        jScrollPane2.setOpaque(false);
+        initComponents();
+        
+       
+       jScrollPane2.setOpaque(false);
        jScrollPane2.getViewport().setOpaque(false);
-       btn_filtre_RAM.setVisible(false);
-       btn_filtre_SSD.setVisible(false);
-       btn_filtre_HDD.setVisible(false);
+       jScrollPane3.setOpaque(false);
+       jScrollPane3.getViewport().setOpaque(false);
+       jScrollPane4.setOpaque(false);
+       jScrollPane4.getViewport().setOpaque(false);
+       jScrollPane5.setOpaque(false);
+       jScrollPane5.getViewport().setOpaque(false);
+       pnl_Filtre_Major_RAM.setVisible(false);
+       pnl_Filtre_Major_SSD.setVisible(false);
+       pnl_Filtre_Major_HDD.setVisible(false);
+       jLayeredPane_Filtre.setVisible(false);
+       
+      
       try{
        MyClass.funtie();
       }catch(Exception e)
@@ -51,8 +70,261 @@ public class Interfata_Principala extends javax.swing.JFrame {
       }
   
     }
-    ArrayList<ObiectGeneral> arrayListBuffer = new ArrayList<>();
    
+   ArrayList<ObiectGeneral> arrayListBuffer = new ArrayList<>();
+   public void PopulareMasiveDeDateSSD()
+   {
+       ArrayList<ObiectGeneral> arrayList = new ArrayList<>();
+
+    try  {
+        ObjectInputStream objectInputStream =
+                new ObjectInputStream(new FileInputStream("data.olivera"));
+        while (true) {
+            Object read = objectInputStream.readObject();
+            if (read == null)
+                break;
+
+            // We should always cast explicitly
+            ObiectGeneral myClassRead = (ObiectGeneral) read;
+            arrayList.add(myClassRead);
+            
+        }
+    }
+    catch (EOFException e) {
+        // This exception is expected
+    }   catch (IOException ex) {
+            Logger.getLogger(Interfata_Principala.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Interfata_Principala.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    float minPretSSD=Float.MAX_VALUE;
+    float maximPretSSD=0.0f;
+    ArrayList<String> formsFactors=new ArrayList<>();
+    ArrayList<String> tipuriControls=new ArrayList<>();
+    ArrayList<String> tipuriMemorie=new ArrayList<>();
+    ArrayList<String> capacitatiList=new ArrayList<>();
+    ArrayList<String> tipuriComunicare=new ArrayList<>();
+    for(ObiectGeneral m:arrayList)
+    {
+        if(m instanceof SSD)
+        { 
+            tipuriControls.add(((SSD) m).getTipController());
+            tipuriMemorie.add(((SSD) m).getTipMemorie());
+            capacitatiList.add(Integer.toString(((SSD) m).getCpacitate()));
+            tipuriComunicare.add(((SSD) m).getTipComunicare());
+            formsFactors.add(((SSD) m).getFormFactor());
+                if(((SSD)m).getPret()>maximPretSSD)
+                maximPretSSD=((SSD)m).getPret();
+            else if(((SSD)m).getPret()<minPretSSD)
+                minPretSSD=((SSD)m).getPret();
+        }
+    }
+    sliderPretSSD.setMinimum((int)minPretSSD);
+    sliderPretSSD.setMaximum((int)maximPretSSD);
+    
+    Set<String> set = new HashSet<>(formsFactors);
+    formsFactors.clear();
+    formsFactors.addAll(set);
+    
+    set = new HashSet<>(tipuriControls);
+    tipuriControls.clear();
+    tipuriControls.addAll(set);
+    
+    set = new HashSet<>(tipuriMemorie);
+    tipuriMemorie.clear();
+    tipuriMemorie.addAll(set);
+    
+    set = new HashSet<>(capacitatiList);
+    capacitatiList.clear();
+    capacitatiList.addAll(set);
+    
+    set = new HashSet<>(tipuriComunicare);
+    tipuriComunicare.clear();
+    tipuriComunicare.addAll(set);
+    
+    listFormFactorSSD.setModel(new DefaultComboBoxModel<String>(formsFactors.toArray(new String[0])));
+    
+    listaTipControlsSSD.setModel(new DefaultComboBoxModel<String>(tipuriControls.toArray(new String[0])));
+    
+    listaTipMemorieSSD.setModel(new DefaultComboBoxModel<String>(tipuriMemorie.toArray(new String[0])));
+    
+    listaCapacitatiSSD.setModel(new DefaultComboBoxModel<String>(capacitatiList.toArray(new String[0])));
+    
+    listaTipComunicareSSD.setModel(new DefaultComboBoxModel<String>(tipuriComunicare.toArray(new String[0])));
+    
+   }
+   
+   
+   
+   public void PopulareMasiveDeDateHDD()
+   {
+       ArrayList<ObiectGeneral> arrayList = new ArrayList<>();
+
+    try  {
+        ObjectInputStream objectInputStream =
+                new ObjectInputStream(new FileInputStream("data.olivera"));
+        while (true) {
+            Object read = objectInputStream.readObject();
+            if (read == null)
+                break;
+
+            // We should always cast explicitly
+            ObiectGeneral myClassRead = (ObiectGeneral) read;
+            arrayList.add(myClassRead);
+        }
+    }
+    catch (EOFException e) {
+        // This exception is expected
+    }   catch (IOException ex) {
+            Logger.getLogger(Interfata_Principala.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Interfata_Principala.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    float minPretHdd=Float.MAX_VALUE;
+    float maximPretHdd=0.0f;
+    ArrayList<String> vitezeRotatie=new ArrayList<>();
+    ArrayList<String> tipuriMemorie=new ArrayList<>();
+    ArrayList<String> capacitatiList=new ArrayList<>();
+    ArrayList<String> tipuriComunicare=new ArrayList<>();
+    for(ObiectGeneral m:arrayList)
+    {
+        if(m instanceof HDD)
+        {
+            vitezeRotatie.add(Integer.toString(((HDD) m).getVitezaRotatie()));
+            tipuriMemorie.add(((HDD) m).getTipMemorie());
+            capacitatiList.add(Integer.toString(((HDD) m).getCpacitate()));
+            tipuriComunicare.add(((HDD) m).getTipComunicare());
+            
+             if(((HDD)m).getPret()>maximPretHdd)
+                maximPretHdd=((HDD)m).getPret();
+            else if(((HDD)m).getPret()<minPretHdd)
+                minPretHdd=((HDD)m).getPret();
+        }
+    }
+    sliderPretHDD.setMinimum((int)minPretHdd);
+    sliderPretHDD.setMaximum((int)maximPretHdd);
+    
+    Set<String> set = new HashSet<>(vitezeRotatie);
+    vitezeRotatie.clear();
+    vitezeRotatie.addAll(set);
+    
+    set = new HashSet<>(tipuriMemorie);
+    tipuriMemorie.clear();
+    tipuriMemorie.addAll(set);
+    
+    set = new HashSet<>(capacitatiList);
+    capacitatiList.clear();
+    capacitatiList.addAll(set);
+    
+    set = new HashSet<>(tipuriComunicare);
+    tipuriComunicare.clear();
+    tipuriComunicare.addAll(set);
+    
+    listaVitezeRotatieHDD.setModel(new DefaultComboBoxModel<String>(vitezeRotatie.toArray(new String[0])));
+    listaTipuriMemorieHDD.setModel(new DefaultComboBoxModel<String>(tipuriMemorie.toArray(new String[0])));
+    listaCapacitatiHDD.setModel(new DefaultComboBoxModel<String>(capacitatiList.toArray(new String[0])));
+    listaTipComunicareHDD.setModel(new DefaultComboBoxModel<String>(tipuriComunicare.toArray(new String[0])));
+   }
+   
+   
+   
+   public void PopulareMasiveDeDateRAM()
+   {
+        ArrayList<ObiectGeneral> arrayList = new ArrayList<>();
+
+    try  {
+        ObjectInputStream objectInputStream =
+                new ObjectInputStream(new FileInputStream("data.olivera"));
+        while (true) {
+            Object read = objectInputStream.readObject();
+            if (read == null)
+                break;
+
+            // We should always cast explicitly
+            ObiectGeneral myClassRead = (ObiectGeneral) read;
+            arrayList.add(myClassRead);
+        }
+    }
+    catch (EOFException e) {
+        // This exception is expected
+    }   catch (IOException ex) {
+            Logger.getLogger(Interfata_Principala.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Interfata_Principala.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    float minPretRam=Float.MAX_VALUE;
+    float maximPretRam=0.0f;
+    
+    ArrayList<String> tipuriComunicare=new ArrayList<>();
+    ArrayList<String> tipuriLatente=new ArrayList<>();
+    ArrayList<String> tipuriMemorie=new ArrayList<>();
+    ArrayList<String> voltajList=new ArrayList<>();
+    ArrayList<String> tipuriDeCapacitate=new ArrayList<>();
+    ArrayList<String> listaFrecvente=new ArrayList<>();
+    for(ObiectGeneral m:arrayList)
+    {
+        if(m instanceof RAM)
+        {
+            tipuriComunicare.add(((RAM) m).getTipComunicare());
+            tipuriLatente.add(((RAM) m).getLatenta());
+            tipuriMemorie.add(((RAM) m).getTipMemorie());
+            voltajList.add(Float.toString(((RAM) m).getVoltaj()));
+            tipuriDeCapacitate.add(Integer.toString(((RAM) m).getCpacitate()));
+            listaFrecvente.add(Integer.toString(((RAM) m).getFrecventa()));
+            
+            if(((RAM)m).getPret()>maximPretRam)
+                maximPretRam=((RAM)m).getPret();
+            else if(((RAM)m).getPret()<minPretRam)
+                minPretRam=((RAM)m).getPret();
+            
+
+        }
+    }
+    Set<String> set = new HashSet<>(tipuriComunicare);
+    
+    tipuriComunicare.clear();
+    tipuriComunicare.addAll(set);
+    
+    set=new HashSet<>(tipuriLatente);
+    tipuriLatente.clear();
+    tipuriLatente.addAll(set);
+    
+    set=new HashSet<>(tipuriMemorie);
+    tipuriMemorie.clear();
+    tipuriMemorie.addAll(set);
+    
+    set=new HashSet<>(voltajList);
+    voltajList.clear();
+    voltajList.addAll(set);
+    
+    set=new HashSet<>(tipuriDeCapacitate);
+    tipuriDeCapacitate.clear();
+    tipuriDeCapacitate.addAll(set);
+    
+     set=new HashSet<>(listaFrecvente);
+    listaFrecvente.clear();
+    listaFrecvente.addAll(set);
+    
+    listaTipuriLatenteRam.setModel(new DefaultComboBoxModel<String>(tipuriLatente.toArray(new String[0])));
+    
+    listaTipuriComunicariRam.setModel(new DefaultComboBoxModel<String>(tipuriComunicare.toArray(new String[0])));
+    
+    listaTipuriMemorieRam.setModel(new DefaultComboBoxModel<String>(tipuriMemorie.toArray(new String[0])));
+    
+    listaVoltajRam.setModel(new DefaultComboBoxModel<String>(voltajList.toArray(new String[0])));
+    
+    listaCapacitateRam.setModel(new DefaultComboBoxModel<String>(tipuriDeCapacitate.toArray(new String[0])));
+    
+    listaFrecventeRam.setModel(new DefaultComboBoxModel<String>(listaFrecvente.toArray(new String[0])));
+    
+    pretRamSlider.setMinimum((int)minPretRam);
+    pretRamSlider.setMaximum((int)maximPretRam);
+    
+    
+    
+   }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -91,15 +363,62 @@ public class Interfata_Principala extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btn_AfisareTotala = new com.k33ptoo.components.KButton();
         btn_filtru_AplicareTIP = new com.k33ptoo.components.KButton();
-        SSD_ = new javax.swing.JCheckBox();
-        RAM_ = new javax.swing.JCheckBox();
-        HDD_ = new javax.swing.JCheckBox();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
+        RAM_Tip = new javax.swing.JRadioButton();
+        HDD_Tip = new javax.swing.JRadioButton();
+        SSD_Tip = new javax.swing.JRadioButton();
+        jLayeredPane_Filtre = new javax.swing.JLayeredPane();
+        pnl_Filtre_Major_RAM = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        pnl_Filtre_Ram = new javax.swing.JPanel();
+        pretRam = new javax.swing.JCheckBox();
+        pretRamSlider = new javax.swing.JSlider();
+        listaTipuriComunicariRam = new javax.swing.JComboBox<>();
+        valoare_Slider_Pret_Ram = new javax.swing.JLabel();
+        comunicareRam = new javax.swing.JCheckBox();
+        frecventaRam = new javax.swing.JCheckBox();
+        latentaRam = new javax.swing.JCheckBox();
+        listaTipuriLatenteRam = new javax.swing.JComboBox<>();
+        voltajRam = new javax.swing.JCheckBox();
+        listaVoltajRam = new javax.swing.JComboBox<>();
+        tipMemorieRam = new javax.swing.JCheckBox();
+        listaTipuriMemorieRam = new javax.swing.JComboBox<>();
+        capacitateRam = new javax.swing.JCheckBox();
+        listaCapacitateRam = new javax.swing.JComboBox<>();
+        listaFrecventeRam = new javax.swing.JComboBox<>();
         btn_filtre_RAM = new com.k33ptoo.components.KButton();
-        btn_filtre_SSD = new com.k33ptoo.components.KButton();
+        pnl_Filtre_Major_HDD = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        pnl_Filtre_HDD = new javax.swing.JPanel();
+        sliderPretHDD = new javax.swing.JSlider();
+        pretHDD = new javax.swing.JCheckBox();
+        valoare_Slider_Pret_HDD = new javax.swing.JLabel();
+        vitezaRotatieHDD = new javax.swing.JCheckBox();
+        listaVitezeRotatieHDD = new javax.swing.JComboBox<>();
+        tipMemorieHDD = new javax.swing.JCheckBox();
+        listaTipuriMemorieHDD = new javax.swing.JComboBox<>();
+        capacitateHDD = new javax.swing.JCheckBox();
+        listaCapacitatiHDD = new javax.swing.JComboBox<>();
+        tipComunicareHDD = new javax.swing.JCheckBox();
+        listaTipComunicareHDD = new javax.swing.JComboBox<>();
         btn_filtre_HDD = new com.k33ptoo.components.KButton();
+        pnl_Filtre_Major_SSD = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        pnl_Filtre_SSD = new javax.swing.JPanel();
+        sliderPretSSD = new javax.swing.JSlider();
+        pretSSD = new javax.swing.JCheckBox();
+        valoare_Slider_Pret_SSD = new javax.swing.JLabel();
+        formFactorSSD = new javax.swing.JCheckBox();
+        listFormFactorSSD = new javax.swing.JComboBox<>();
+        tipControlSSD = new javax.swing.JCheckBox();
+        listaTipControlsSSD = new javax.swing.JComboBox<>();
+        tipMemorieSSD = new javax.swing.JCheckBox();
+        listaTipMemorieSSD = new javax.swing.JComboBox<>();
+        capacitateSSD = new javax.swing.JCheckBox();
+        listaCapacitatiSSD = new javax.swing.JComboBox<>();
+        tipComunicareSSD = new javax.swing.JCheckBox();
+        listaTipComunicareSSD = new javax.swing.JComboBox<>();
+        btn_filtre_SSD = new com.k33ptoo.components.KButton();
+        jLabel3 = new javax.swing.JLabel();
         panel_info_Setari = new keeptoo.KGradientPanel();
         jLabel4 = new javax.swing.JLabel();
         panel_info_Obj = new keeptoo.KGradientPanel();
@@ -178,7 +497,7 @@ public class Interfata_Principala extends javax.swing.JFrame {
 
         icon_text.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         icon_text.setForeground(new java.awt.Color(255, 255, 255));
-        icon_text.setText("Setari");
+        icon_text.setText("Profilul meu");
 
         javax.swing.GroupLayout btn_setariLayout = new javax.swing.GroupLayout(btn_setari);
         btn_setari.setLayout(btn_setariLayout);
@@ -334,6 +653,8 @@ public class Interfata_Principala extends javax.swing.JFrame {
         panel_info_PR.setkEndColor(new java.awt.Color(119, 197, 220));
         panel_info_PR.setkStartColor(new java.awt.Color(41, 168, 73));
 
+        jScrollPane1.setOpaque(false);
+
         jTextArea1.setEditable(false);
         jTextArea1.setBackground(new java.awt.Color(255, 255, 255));
         jTextArea1.setColumns(20);
@@ -346,9 +667,11 @@ public class Interfata_Principala extends javax.swing.JFrame {
 
         jScrollPane2.setBackground(new java.awt.Color(107, 198, 110));
         jScrollPane2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jScrollPane2.setOpaque(false);
 
         jPanel1.setBackground(new java.awt.Color(119, 197, 220));
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.setOpaque(false);
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -390,43 +713,218 @@ public class Interfata_Principala extends javax.swing.JFrame {
         });
         jPanel1.add(btn_filtru_AplicareTIP, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 140, -1));
 
-        buttonGroupTIP.add(SSD_);
-        SSD_.setText("SSD");
-        SSD_.setOpaque(false);
-        jPanel1.add(SSD_, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, -1, -1));
-
-        buttonGroupTIP.add(RAM_);
-        RAM_.setText("RAM");
-        RAM_.setOpaque(false);
-        RAM_.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                RAM_MouseClicked(evt);
-            }
-        });
-        jPanel1.add(RAM_, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
-
-        buttonGroupTIP.add(HDD_);
-        HDD_.setText("HDD");
-        HDD_.setOpaque(false);
-        jPanel1.add(HDD_, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, -1));
-
-        jCheckBox1.setText("Pret RAM <300");
-        jCheckBox1.setOpaque(false);
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroupTIP.add(RAM_Tip);
+        RAM_Tip.setText("RAM");
+        RAM_Tip.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        RAM_Tip.setOpaque(false);
+        RAM_Tip.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                RAM_TipActionPerformed(evt);
             }
         });
-        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
+        jPanel1.add(RAM_Tip, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, -1, -1));
 
-        jCheckBox2.setText("Comunicare Simpla");
-        jCheckBox2.setOpaque(false);
-        jPanel1.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, -1, -1));
+        buttonGroupTIP.add(HDD_Tip);
+        HDD_Tip.setText("HDD");
+        HDD_Tip.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        HDD_Tip.setOpaque(false);
+        HDD_Tip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HDD_TipActionPerformed(evt);
+            }
+        });
+        jPanel1.add(HDD_Tip, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
-        jCheckBox3.setText("Pret HDD >2000");
-        jCheckBox3.setActionCommand("");
-        jCheckBox3.setOpaque(false);
-        jPanel1.add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, 130, -1));
+        buttonGroupTIP.add(SSD_Tip);
+        SSD_Tip.setText("SSD");
+        SSD_Tip.setOpaque(false);
+        SSD_Tip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SSD_TipActionPerformed(evt);
+            }
+        });
+        jPanel1.add(SSD_Tip, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, -1, -1));
+
+        jLayeredPane_Filtre.setLayout(new java.awt.CardLayout());
+
+        pnl_Filtre_Major_RAM.setOpaque(false);
+        pnl_Filtre_Major_RAM.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jScrollPane3.setBackground(new java.awt.Color(119, 197, 220));
+        jScrollPane3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jScrollPane3.setOpaque(false);
+
+        pnl_Filtre_Ram.setBackground(new java.awt.Color(119, 197, 220));
+        pnl_Filtre_Ram.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        pnl_Filtre_Ram.setOpaque(false);
+
+        pretRam.setText("Pret");
+        pretRam.setOpaque(false);
+        pretRam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pretRamActionPerformed(evt);
+            }
+        });
+
+        pretRamSlider.setOpaque(false);
+        pretRamSlider.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                pretRamSliderMouseDragged(evt);
+            }
+        });
+        pretRamSlider.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pretRamSliderMouseClicked(evt);
+            }
+        });
+
+        listaTipuriComunicariRam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        listaTipuriComunicariRam.setOpaque(false);
+
+        valoare_Slider_Pret_Ram.setText("Valoare\n");
+
+        comunicareRam.setText("Comunicare");
+        comunicareRam.setOpaque(false);
+        comunicareRam.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comunicareRamMouseClicked(evt);
+            }
+        });
+        comunicareRam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comunicareRamActionPerformed(evt);
+            }
+        });
+
+        frecventaRam.setText("Frecventa");
+        frecventaRam.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                frecventaRamMouseClicked(evt);
+            }
+        });
+
+        latentaRam.setText("Latenta");
+        latentaRam.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                latentaRamMouseClicked(evt);
+            }
+        });
+        latentaRam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                latentaRamActionPerformed(evt);
+            }
+        });
+
+        listaTipuriLatenteRam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        voltajRam.setText("Voltaj");
+        voltajRam.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                voltajRamMouseClicked(evt);
+            }
+        });
+        voltajRam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                voltajRamActionPerformed(evt);
+            }
+        });
+
+        listaVoltajRam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        tipMemorieRam.setText("Tip Memorie");
+        tipMemorieRam.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tipMemorieRamMouseClicked(evt);
+            }
+        });
+
+        listaTipuriMemorieRam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        capacitateRam.setText("Capacitate");
+
+        listaCapacitateRam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        listaFrecventeRam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout pnl_Filtre_RamLayout = new javax.swing.GroupLayout(pnl_Filtre_Ram);
+        pnl_Filtre_Ram.setLayout(pnl_Filtre_RamLayout);
+        pnl_Filtre_RamLayout.setHorizontalGroup(
+            pnl_Filtre_RamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_Filtre_RamLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnl_Filtre_RamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnl_Filtre_RamLayout.createSequentialGroup()
+                        .addGroup(pnl_Filtre_RamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(voltajRam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(latentaRam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pretRam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(comunicareRam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(frecventaRam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(pnl_Filtre_RamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnl_Filtre_RamLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(listaTipuriComunicariRam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnl_Filtre_RamLayout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(pretRamSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(valoare_Slider_Pret_Ram))
+                            .addGroup(pnl_Filtre_RamLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(listaVoltajRam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnl_Filtre_RamLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(pnl_Filtre_RamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(listaFrecventeRam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(listaTipuriLatenteRam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(pnl_Filtre_RamLayout.createSequentialGroup()
+                        .addGroup(pnl_Filtre_RamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(capacitateRam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tipMemorieRam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(pnl_Filtre_RamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(listaTipuriMemorieRam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(listaCapacitateRam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnl_Filtre_RamLayout.setVerticalGroup(
+            pnl_Filtre_RamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_Filtre_RamLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnl_Filtre_RamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(valoare_Slider_Pret_Ram)
+                    .addComponent(pretRamSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pretRam))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnl_Filtre_RamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comunicareRam)
+                    .addComponent(listaTipuriComunicariRam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addGroup(pnl_Filtre_RamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(frecventaRam)
+                    .addComponent(listaFrecventeRam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnl_Filtre_RamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(latentaRam)
+                    .addComponent(listaTipuriLatenteRam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnl_Filtre_RamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(voltajRam)
+                    .addComponent(listaVoltajRam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnl_Filtre_RamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(listaTipuriMemorieRam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tipMemorieRam))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnl_Filtre_RamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(capacitateRam)
+                    .addComponent(listaCapacitateRam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(56, Short.MAX_VALUE))
+        );
+
+        jScrollPane3.setViewportView(pnl_Filtre_Ram);
+
+        pnl_Filtre_Major_RAM.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 170));
 
         btn_filtre_RAM.setText("Filtre Ram");
         btn_filtre_RAM.setkHoverColor(new java.awt.Color(119, 197, 220));
@@ -448,21 +946,111 @@ public class Interfata_Principala extends javax.swing.JFrame {
                 btn_filtre_RAMActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_filtre_RAM, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 100, -1));
+        pnl_Filtre_Major_RAM.add(btn_filtre_RAM, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, 100, -1));
 
-        btn_filtre_SSD.setText("Filtre SSD");
-        btn_filtre_SSD.setkHoverColor(new java.awt.Color(119, 197, 220));
-        btn_filtre_SSD.setkHoverEndColor(new java.awt.Color(119, 197, 220));
-        btn_filtre_SSD.setkHoverForeGround(new java.awt.Color(188, 217, 231));
-        btn_filtre_SSD.setkHoverStartColor(new java.awt.Color(41, 168, 73));
-        btn_filtre_SSD.setkPressedColor(new java.awt.Color(220, 119, 156));
-        btn_filtre_SSD.setkStartColor(new java.awt.Color(119, 197, 220));
-        btn_filtre_SSD.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_filtre_SSDActionPerformed(evt);
+        jLayeredPane_Filtre.add(pnl_Filtre_Major_RAM, "card2");
+
+        pnl_Filtre_Major_HDD.setOpaque(false);
+        pnl_Filtre_Major_HDD.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jScrollPane5.setBackground(new java.awt.Color(119, 197, 220));
+        jScrollPane5.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jScrollPane5.setOpaque(false);
+
+        pnl_Filtre_HDD.setBackground(new java.awt.Color(119, 197, 220));
+        pnl_Filtre_HDD.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        pnl_Filtre_HDD.setOpaque(false);
+
+        sliderPretHDD.setOpaque(false);
+        sliderPretHDD.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                sliderPretHDDMouseDragged(evt);
             }
         });
-        jPanel1.add(btn_filtre_SSD, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 100, -1));
+        sliderPretHDD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sliderPretHDDMouseClicked(evt);
+            }
+        });
+
+        pretHDD.setText("Pret");
+
+        valoare_Slider_Pret_HDD.setText("Valoare");
+
+        vitezaRotatieHDD.setText("Viteza Rotatie");
+
+        listaVitezeRotatieHDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        tipMemorieHDD.setText("Tip Memorie");
+
+        listaTipuriMemorieHDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        capacitateHDD.setText("Capacitate");
+
+        listaCapacitatiHDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        tipComunicareHDD.setText("Tip Comunicare");
+
+        listaTipComunicareHDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout pnl_Filtre_HDDLayout = new javax.swing.GroupLayout(pnl_Filtre_HDD);
+        pnl_Filtre_HDD.setLayout(pnl_Filtre_HDDLayout);
+        pnl_Filtre_HDDLayout.setHorizontalGroup(
+            pnl_Filtre_HDDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_Filtre_HDDLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnl_Filtre_HDDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnl_Filtre_HDDLayout.createSequentialGroup()
+                        .addGroup(pnl_Filtre_HDDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(pretHDD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(vitezaRotatieHDD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tipMemorieHDD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(capacitateHDD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(8, 8, 8)
+                        .addGroup(pnl_Filtre_HDDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(listaCapacitatiHDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pnl_Filtre_HDDLayout.createSequentialGroup()
+                                .addComponent(sliderPretHDD, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(8, 8, 8)
+                                .addComponent(valoare_Slider_Pret_HDD))
+                            .addComponent(listaVitezeRotatieHDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(listaTipuriMemorieHDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pnl_Filtre_HDDLayout.createSequentialGroup()
+                        .addComponent(tipComunicareHDD)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(listaTipComunicareHDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+        pnl_Filtre_HDDLayout.setVerticalGroup(
+            pnl_Filtre_HDDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_Filtre_HDDLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnl_Filtre_HDDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(valoare_Slider_Pret_HDD)
+                    .addComponent(pretHDD)
+                    .addComponent(sliderPretHDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnl_Filtre_HDDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(vitezaRotatieHDD)
+                    .addComponent(listaVitezeRotatieHDD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnl_Filtre_HDDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tipMemorieHDD)
+                    .addComponent(listaTipuriMemorieHDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnl_Filtre_HDDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(listaCapacitatiHDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(capacitateHDD))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnl_Filtre_HDDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tipComunicareHDD)
+                    .addComponent(listaTipComunicareHDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jScrollPane5.setViewportView(pnl_Filtre_HDD);
+
+        pnl_Filtre_Major_HDD.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 170));
 
         btn_filtre_HDD.setText("Filtre HDD");
         btn_filtre_HDD.setkHoverColor(new java.awt.Color(119, 197, 220));
@@ -481,7 +1069,166 @@ public class Interfata_Principala extends javax.swing.JFrame {
                 btn_filtre_HDDActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_filtre_HDD, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 100, -1));
+        pnl_Filtre_Major_HDD.add(btn_filtre_HDD, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, 100, -1));
+
+        jLayeredPane_Filtre.add(pnl_Filtre_Major_HDD, "card2");
+
+        pnl_Filtre_Major_SSD.setOpaque(false);
+        pnl_Filtre_Major_SSD.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jScrollPane4.setBackground(new java.awt.Color(119, 197, 220));
+        jScrollPane4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jScrollPane4.setOpaque(false);
+
+        pnl_Filtre_SSD.setBackground(new java.awt.Color(119, 197, 220));
+        pnl_Filtre_SSD.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        pnl_Filtre_SSD.setOpaque(false);
+
+        sliderPretSSD.setOpaque(false);
+        sliderPretSSD.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                sliderPretSSDMouseDragged(evt);
+            }
+        });
+        sliderPretSSD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sliderPretSSDMouseClicked(evt);
+            }
+        });
+
+        pretSSD.setText("Pret");
+        pretSSD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pretSSDActionPerformed(evt);
+            }
+        });
+
+        valoare_Slider_Pret_SSD.setText("Valoare");
+
+        formFactorSSD.setText("Form Factor");
+        formFactorSSD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                formFactorSSDActionPerformed(evt);
+            }
+        });
+
+        listFormFactorSSD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        listFormFactorSSD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listFormFactorSSDActionPerformed(evt);
+            }
+        });
+
+        tipControlSSD.setText("Tip Controler");
+
+        listaTipControlsSSD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        tipMemorieSSD.setText("Tip Memorie");
+        tipMemorieSSD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tipMemorieSSDActionPerformed(evt);
+            }
+        });
+
+        listaTipMemorieSSD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        capacitateSSD.setText("Capacitate");
+        capacitateSSD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                capacitateSSDActionPerformed(evt);
+            }
+        });
+
+        listaCapacitatiSSD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        tipComunicareSSD.setText("Tip Comunicare");
+
+        listaTipComunicareSSD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout pnl_Filtre_SSDLayout = new javax.swing.GroupLayout(pnl_Filtre_SSD);
+        pnl_Filtre_SSD.setLayout(pnl_Filtre_SSDLayout);
+        pnl_Filtre_SSDLayout.setHorizontalGroup(
+            pnl_Filtre_SSDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_Filtre_SSDLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnl_Filtre_SSDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tipComunicareSSD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(capacitateSSD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tipControlSSD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(formFactorSSD, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnl_Filtre_SSDLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(pretSSD, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tipMemorieSSD, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnl_Filtre_SSDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(listaTipMemorieSSD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(listFormFactorSSD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnl_Filtre_SSDLayout.createSequentialGroup()
+                        .addComponent(sliderPretSSD, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(valoare_Slider_Pret_SSD))
+                    .addComponent(listaTipControlsSSD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(listaCapacitatiSSD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(listaTipComunicareSSD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18))
+        );
+        pnl_Filtre_SSDLayout.setVerticalGroup(
+            pnl_Filtre_SSDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_Filtre_SSDLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnl_Filtre_SSDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(pretSSD)
+                    .addComponent(sliderPretSSD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(valoare_Slider_Pret_SSD))
+                .addGap(5, 5, 5)
+                .addGroup(pnl_Filtre_SSDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(listFormFactorSSD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(formFactorSSD))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnl_Filtre_SSDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(tipControlSSD)
+                    .addComponent(listaTipControlsSSD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnl_Filtre_SSDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(listaTipMemorieSSD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tipMemorieSSD))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnl_Filtre_SSDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(capacitateSSD, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(listaCapacitatiSSD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnl_Filtre_SSDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tipComunicareSSD)
+                    .addComponent(listaTipComunicareSSD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
+        jScrollPane4.setViewportView(pnl_Filtre_SSD);
+
+        pnl_Filtre_Major_SSD.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 170));
+
+        btn_filtre_SSD.setText("Filtre SSD");
+        btn_filtre_SSD.setkHoverColor(new java.awt.Color(119, 197, 220));
+        btn_filtre_SSD.setkHoverEndColor(new java.awt.Color(119, 197, 220));
+        btn_filtre_SSD.setkHoverForeGround(new java.awt.Color(188, 217, 231));
+        btn_filtre_SSD.setkHoverStartColor(new java.awt.Color(41, 168, 73));
+        btn_filtre_SSD.setkPressedColor(new java.awt.Color(220, 119, 156));
+        btn_filtre_SSD.setkStartColor(new java.awt.Color(119, 197, 220));
+        btn_filtre_SSD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_filtre_SSDMouseClicked(evt);
+            }
+        });
+        btn_filtre_SSD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_filtre_SSDActionPerformed(evt);
+            }
+        });
+        pnl_Filtre_Major_SSD.add(btn_filtre_SSD, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 0, 100, -1));
+
+        jLayeredPane_Filtre.add(pnl_Filtre_Major_SSD, "card2");
+
+        jPanel1.add(jLayeredPane_Filtre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 430, 210));
 
         jScrollPane2.setViewportView(jPanel1);
 
@@ -489,17 +1236,25 @@ public class Interfata_Principala extends javax.swing.JFrame {
         panel_info_PR.setLayout(panel_info_PRLayout);
         panel_info_PRLayout.setHorizontalGroup(
             panel_info_PRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel_info_PRLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_info_PRLayout.createSequentialGroup()
+                .addGroup(panel_info_PRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
+                    .addGroup(panel_info_PRLayout.createSequentialGroup()
+                        .addGap(181, 181, 181)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         panel_info_PRLayout.setVerticalGroup(
             panel_info_PRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
             .addGroup(panel_info_PRLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(panel_info_PRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(98, 98, 98)
+                .addComponent(jLabel3)
+                .addGap(120, 120, 120))
         );
 
         jLayeredPane1.add(panel_info_PR, "card2");
@@ -515,13 +1270,13 @@ public class Interfata_Principala extends javax.swing.JFrame {
             panel_info_SetariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_info_SetariLayout.createSequentialGroup()
                 .addComponent(jLabel4)
-                .addGap(0, 793, Short.MAX_VALUE))
+                .addGap(0, 705, Short.MAX_VALUE))
         );
         panel_info_SetariLayout.setVerticalGroup(
             panel_info_SetariLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_info_SetariLayout.createSequentialGroup()
                 .addComponent(jLabel4)
-                .addGap(0, 360, Short.MAX_VALUE))
+                .addGap(0, 549, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(panel_info_Setari, "card3");
@@ -537,13 +1292,13 @@ public class Interfata_Principala extends javax.swing.JFrame {
             panel_info_ObjLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_info_ObjLayout.createSequentialGroup()
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 752, Short.MAX_VALUE))
+                .addGap(0, 664, Short.MAX_VALUE))
         );
         panel_info_ObjLayout.setVerticalGroup(
             panel_info_ObjLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_info_ObjLayout.createSequentialGroup()
                 .addComponent(jLabel6)
-                .addGap(0, 360, Short.MAX_VALUE))
+                .addGap(0, 549, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(panel_info_Obj, "card4");
@@ -790,20 +1545,19 @@ public class Interfata_Principala extends javax.swing.JFrame {
     arrayListBuffer.clear();
     
          Component[] comp = jPanel1.getComponents();
-          int tip_scriere=0;
+         
         for (int i = 0;i<comp.length;i++) {
-        if (comp[i] instanceof JCheckBox) {
+        if (comp[i] instanceof JRadioButton) {
 
-            JCheckBox nBox=(JCheckBox)comp[i];
-           
-            if(nBox.isSelected()==true)
-            {
-               String name=nBox.getText();
-               if(name.equals("RAM"))
+               JRadioButton nBox=(JRadioButton)comp[i];
+            if(nBox.isSelected())  
+            {if(nBox==RAM_Tip)
                {jTextArea1.setText("");
-                         btn_filtre_RAM.setVisible(true);
-                         btn_filtre_SSD.setVisible(false);
-                         btn_filtre_HDD.setVisible(false);
+               PopulareMasiveDeDateRAM();
+                      jLayeredPane_Filtre.setVisible(true);
+                      pnl_Filtre_Major_RAM.setVisible(true);
+                      pnl_Filtre_Major_SSD.setVisible(false);
+                      pnl_Filtre_Major_HDD.setVisible(false);
                    for (ObiectGeneral m : arrayList) 
                    {
                        {
@@ -815,46 +1569,47 @@ public class Interfata_Principala extends javax.swing.JFrame {
                        }
                   }
                }
-               if(name.equals("HDD"))
-               {
-                         jTextArea1.setText("");
-                         btn_filtre_RAM.setVisible(false);
-                         btn_filtre_SSD.setVisible(false);
-                         btn_filtre_HDD.setVisible(true);
-                       
-                             
+         if(nBox==HDD_Tip)
+               {jTextArea1.setText("");
+               PopulareMasiveDeDateHDD();
+                      jLayeredPane_Filtre.setVisible(true);
+                      pnl_Filtre_Major_RAM.setVisible(false);
+                      pnl_Filtre_Major_SSD.setVisible(false);
+                      pnl_Filtre_Major_HDD.setVisible(true);
+                      
                    for (ObiectGeneral m : arrayList) 
-                   {            
+                   {
                        {
                            if(m.getClass().getCanonicalName().contains("HDD")==true)
-                           {   jTextArea1.append("HDD"+"\n");
+                           {    jTextArea1.append("HDD"+"\n");
                                jTextArea1.append(m.toString()+"\n");
                                arrayListBuffer.add(m);
                            }
                        }
                   }
-                         
-                  
                }
-                if(name.equals("SSD"))
+         if(nBox==SSD_Tip)
                {jTextArea1.setText("");
-                         btn_filtre_RAM.setVisible(false);
-                         btn_filtre_SSD.setVisible(true);
-                         btn_filtre_HDD.setVisible(false);
+              PopulareMasiveDeDateSSD();
+                      jLayeredPane_Filtre.setVisible(true);
+                      pnl_Filtre_Major_RAM.setVisible(false);
+                      pnl_Filtre_Major_SSD.setVisible(true);
+                      pnl_Filtre_Major_HDD.setVisible(false);
+                                            
                    for (ObiectGeneral m : arrayList) 
                    {
                        {
                            if(m.getClass().getCanonicalName().contains("SSD")==true)
-                           {jTextArea1.append("SSD"+"\n");
+                           {    jTextArea1.append("SSD"+"\n");
                                jTextArea1.append(m.toString()+"\n");
                                arrayListBuffer.add(m);
                            }
                        }
                   }
                }
-            }
            
     }
+        }
    }      
 //    try  {
 //        //deschid fisierul in care am scris datele
@@ -909,93 +1664,9 @@ public class Interfata_Principala extends javax.swing.JFrame {
     
     }//GEN-LAST:event_btn_filtru_AplicareTIPMouseClicked
 
-    private void RAM_MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RAM_MouseClicked
-        // TODO add your handling code here:
-        
-    
-    }//GEN-LAST:event_RAM_MouseClicked
-
-    private void btn_filtre_RAMMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_filtre_RAMMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_filtre_RAMMouseEntered
-
-    private void btn_filtre_RAMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_filtre_RAMActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_filtre_RAMActionPerformed
-
     private void btn_filtre_SSDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_filtre_SSDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_filtre_SSDActionPerformed
-
-    private void btn_filtre_RAMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_filtre_RAMMouseClicked
-        // TODO add your handling code here:
-        
-        ArrayList<RAM> obj_curent=new ArrayList<>();
-        obj_curent=(ArrayList<RAM>)arrayListBuffer.clone();
-        Component[] comp = jPanel1.getComponents();
-        for (int i = 0;i<comp.length;i++) {
-        if (comp[i] instanceof JCheckBox) {
-
-            JCheckBox nBox=(JCheckBox)comp[i];
-           
-            if(nBox.isSelected()==true)
-            {
-               String name=nBox.getText();
-               if(name.equals("Pret RAM <300"))
-               {
-                   for (ObiectGeneral m : arrayListBuffer) 
-                   {
-                       {
-                           if(m.getClass().getCanonicalName().contains("RAM")==true)
-                           {    
-                               RAM ram=RAM.class.cast(m);
-                              if(!(ram.getPret()<300f))
-                              {
-                                  obj_curent.remove(ram);
-                              }
-                           
-                           }
-                       }
-                  }
-               }
-               if(name.equals("Comunicare Simpla"))
-               {
-                   for (ObiectGeneral m : arrayListBuffer) 
-                   {
-                       {
-                           if(m.getClass().getCanonicalName().contains("RAM")==true)
-                           {    
-                               RAM ram=RAM.class.cast(m);
-                              if(!(ram.getTipComunicare().equals("Single channel")))
-                              {
-                                  obj_curent.remove(ram);
-                              }
-                           
-                           }
-                       }
-                  }
-               }
-             
-              
-            }
-           
-    } 
-        
-   } 
-        if(obj_curent.isEmpty()==false)
-        {jTextArea1.setText("");
-        for(RAM r:obj_curent)
-        {
-            jTextArea1.append(r.toString()+"\n");
-        }}
-        else{jTextArea1.setText("Nu exista produse cu aceste caracteristici");}
-        
-       
-    }//GEN-LAST:event_btn_filtre_RAMMouseClicked
-
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void btn_filtre_HDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_filtre_HDDActionPerformed
         // TODO add your handling code here:
@@ -1003,56 +1674,519 @@ public class Interfata_Principala extends javax.swing.JFrame {
 
     private void btn_filtre_HDDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_filtre_HDDMouseClicked
         // TODO add your handling code here:
-         
-         ArrayList<HDD> obj_curent=new ArrayList<>();
+        ArrayList<HDD> obj_curent=new ArrayList<>();
         obj_curent=(ArrayList<HDD>)arrayListBuffer.clone();
-        Component[] comp = jPanel1.getComponents();
-        for (int i = 0;i<comp.length;i++) {
-        if (comp[i] instanceof JCheckBox) {
+        Component[] comp = pnl_Filtre_HDD.getComponents();
+         for (int i = 0;i<comp.length;i++) {
+            if (comp[i] instanceof JCheckBox) {
+                
+                JCheckBox nBox=(JCheckBox)comp[i];
 
-            JCheckBox nBox=(JCheckBox)comp[i];
-           
-            if(nBox.isSelected()==true)
-            {
-               String name=nBox.getText();
-               if(name.equals("Pret HDD >2000"))
-               {
-                   for (ObiectGeneral m : arrayListBuffer) 
-                   {
-                       {
-                           if(m.getClass().getCanonicalName().contains("HDD")==true)
-                           {    
-                               HDD hdd=HDD.class.cast(m);
-                              if(!(hdd.getPret()>2000f))
-                              {
-                                  obj_curent.remove(hdd);
-                              }
-                           
-                           }
-                       }
-                  }
-               }
-               
-               
-             
-              
+                if(nBox.isSelected()==true)
+                {
+                    if(nBox==pretHDD)
+                    {
+                        for (ObiectGeneral m : arrayListBuffer)
+                        {
+                            {
+                                if(m.getClass().getCanonicalName().contains("HDD")==true)
+                                {
+                                    HDD hdd=HDD.class.cast(m);
+                                    if(!((int)hdd.getPret()<=sliderPretHDD.getValue()))
+                                    {
+                                        obj_curent.remove(hdd);
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                    if(nBox==vitezaRotatieHDD)
+                    {
+                        for (ObiectGeneral m : arrayListBuffer)
+                        {
+                            {
+                                if(m.getClass().getCanonicalName().contains("HDD")==true)
+                                {
+                                    HDD hdd=HDD.class.cast(m);
+                                    if(!(Integer.toString(hdd.getVitezaRotatie()).equals(listaVitezeRotatieHDD.getSelectedItem())))
+                                    {
+                                        obj_curent.remove(hdd);
+                                    }
+
+                                }
+                            }
+                        
+                          }
+                    }
+                    if(nBox==tipMemorieHDD)
+                    {
+                        for (ObiectGeneral m : arrayListBuffer)
+                        {
+                            {
+                                if(m.getClass().getCanonicalName().contains("HDD")==true)
+                                {
+                                    HDD hdd=HDD.class.cast(m);
+                                    if(!(hdd.getTipMemorie().equals(listaTipuriMemorieHDD.getSelectedItem())))
+                                    {
+                                        obj_curent.remove(hdd);
+                                    }
+
+                                }
+                            }
+                        
+                          }
+                    }
+                    if(nBox==capacitateHDD)
+                    {
+                        for (ObiectGeneral m : arrayListBuffer)
+                        {
+                            {
+                                if(m.getClass().getCanonicalName().contains("HDD")==true)
+                                {
+                                    HDD hdd=HDD.class.cast(m);
+                                    if(!(Integer.toString(hdd.getCpacitate()).equals(listaCapacitatiHDD.getSelectedItem())))
+                                    {
+                                        obj_curent.remove(hdd);
+                                    }
+
+                                }
+                            }
+                        
+                          }
+                    }
+                    if(nBox==tipComunicareHDD)
+                    {
+                        for (ObiectGeneral m : arrayListBuffer)
+                        {
+                            {
+                                if(m.getClass().getCanonicalName().contains("HDD")==true)
+                                {
+                                    HDD hdd=HDD.class.cast(m);
+                                    if(!(hdd.getTipComunicare().equals(listaTipComunicareHDD.getSelectedItem())))
+                                    {
+                                        obj_curent.remove(hdd);
+                                    }
+
+                                }
+                            }
+                        
+                          }
+                    }
+                }
             }
-           
-    } 
+         }
+ 
+  
+         if(obj_curent.isEmpty()==false)
+        {jTextArea1.setText("");
+       
+            for(HDD r:obj_curent)
+            {
+                jTextArea1.append(r.toString()+"\n");
+            }}
+            else{jTextArea1.setText("Nu exista produse cu aceste caracteristici");}
+ 
+    }//GEN-LAST:event_btn_filtre_HDDMouseClicked
+
+    private void RAM_TipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RAM_TipActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RAM_TipActionPerformed
+
+    private void HDD_TipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HDD_TipActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HDD_TipActionPerformed
+
+    private void SSD_TipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SSD_TipActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SSD_TipActionPerformed
+
+    private void btn_filtre_RAMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_filtre_RAMActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_filtre_RAMActionPerformed
+
+    private void btn_filtre_RAMMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_filtre_RAMMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_filtre_RAMMouseEntered
+
+    private void btn_filtre_RAMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_filtre_RAMMouseClicked
+        // TODO add your handling code here:
+
+        ArrayList<RAM> obj_curent=new ArrayList<>();
+        obj_curent=(ArrayList<RAM>)arrayListBuffer.clone();
+        Component[] comp = pnl_Filtre_Ram.getComponents();
+   
+        for (int i = 0;i<comp.length;i++) {
+            if (comp[i] instanceof JCheckBox) {
+
+                JCheckBox nBox=(JCheckBox)comp[i];
+
+                if(nBox.isSelected()==true)
+                {
+                    
+                    if(nBox==pretRam)//pot sa fac cu instanta unui button
+                    {
+                        for (ObiectGeneral m : arrayListBuffer)
+                        {
+                            {
+                                if(m.getClass().getCanonicalName().contains("RAM")==true)
+                                {
+                                    RAM ram=RAM.class.cast(m);
+                                    if(!((int)ram.getPret()<=pretRamSlider.getValue()))
+                                    {
+                                        obj_curent.remove(ram);
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                    if (nBox==comunicareRam){
+                
+                        for (ObiectGeneral m : arrayListBuffer)
+                        {
+                            {
+                                if(m.getClass().getCanonicalName().contains("RAM")==true)
+                                {
+                                    RAM ram=RAM.class.cast(m);
+                                    if(!(ram.getTipComunicare().equals(listaTipuriComunicariRam.getSelectedItem())))
+                                    {
+                                        obj_curent.remove(ram);
+                                    }
+
+                                }
+                            }
+                        
+                          }
+                                            }
+                    if(nBox==frecventaRam)
+                    {
+                        for (ObiectGeneral m : arrayListBuffer)
+                        {
+                            {
+                                if(m.getClass().getCanonicalName().contains("RAM")==true)
+                                {
+                                   RAM ram=RAM.class.cast(m);
+                                    if(!(Integer.toString(ram.getFrecventa()).equals(listaFrecventeRam.getSelectedItem())))
+                                    {
+                                        obj_curent.remove(ram);
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                    if(nBox==latentaRam)
+                    {
+                        for (ObiectGeneral m : arrayListBuffer)
+                        {
+                            {
+                                if(m.getClass().getCanonicalName().contains("RAM")==true)
+                                {
+                                    RAM ram=RAM.class.cast(m);
+                                    if(!(ram.getLatenta().equals(listaTipuriLatenteRam.getSelectedItem())))
+                                    {
+                                        obj_curent.remove(ram);
+                                    }
+
+                                }
+                            }
+                        
+                          }
+                    }
+                    if(nBox==tipMemorieRam)
+                    {
+                        for (ObiectGeneral m : arrayListBuffer)
+                        {
+                            {
+                                if(m.getClass().getCanonicalName().contains("RAM")==true)
+                                {
+                                    RAM ram=RAM.class.cast(m);
+                                    if(!(ram.getTipMemorie().equals(listaTipuriMemorieRam.getSelectedItem())))
+                                    {
+                                        obj_curent.remove(ram);
+                                    }
+
+                                }
+                            }
+                        
+                          }
+                    }
+                    if(nBox==voltajRam)
+                    {
+                        
+                        for (ObiectGeneral m : arrayListBuffer)
+                        {
+                            {
+                                if(m.getClass().getCanonicalName().contains("RAM")==true)
+                                {
+                                    RAM ram=RAM.class.cast(m);
+                                   
+                                    if(!(Float.toString(ram.getVoltaj()).equals(listaVoltajRam.getSelectedItem())))
+                                    {
+                                        obj_curent.remove(ram);
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                    if(nBox==capacitateRam)
+                    {
+                        for (ObiectGeneral m : arrayListBuffer)
+                        {
+                            {
+                                if(m.getClass().getCanonicalName().contains("RAM")==true)
+                                {
+                                    RAM ram=RAM.class.cast(m);
+                                   
+                                    if(!(Integer.toString(ram.getCpacitate()).equals(listaCapacitateRam.getSelectedItem())))
+                                    {
+                                        obj_curent.remove(ram);
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                }
+                 
+            }
+                    
+
+        }
         
-   } 
         if(obj_curent.isEmpty()==false)
         {jTextArea1.setText("");
-        for(HDD r:obj_curent)
-        {
-            jTextArea1.append(r.toString()+"\n");
-        }}
-        else{jTextArea1.setText("Nu exista produse cu aceste caracteristici");}
+       
+            for(RAM r:obj_curent)
+            {
+                jTextArea1.append(r.toString()+"\n");
+            }}
+            else{jTextArea1.setText("Nu exista produse cu aceste caracteristici");}
+
+    }//GEN-LAST:event_btn_filtre_RAMMouseClicked
+
+    private void pretRamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pretRamActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pretRamActionPerformed
+
+    private void pretRamSliderMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pretRamSliderMouseDragged
+        // TODO add your handling code here:
+        valoare_Slider_Pret_Ram.setText((Integer.toString(pretRamSlider.getValue())));
+    }//GEN-LAST:event_pretRamSliderMouseDragged
+
+    private void comunicareRamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comunicareRamActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comunicareRamActionPerformed
+  
+    private void comunicareRamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comunicareRamMouseClicked
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_comunicareRamMouseClicked
+
+    private void frecventaRamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_frecventaRamMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_frecventaRamMouseClicked
+
+    private void pretRamSliderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pretRamSliderMouseClicked
+        // TODO add your handling code here:
+         valoare_Slider_Pret_Ram.setText((Integer.toString(pretRamSlider.getValue())));
+    }//GEN-LAST:event_pretRamSliderMouseClicked
+
+    private void latentaRamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_latentaRamActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_latentaRamActionPerformed
+    
+    private void latentaRamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_latentaRamMouseClicked
+        // TODO add your handling code here:
+      
+    }//GEN-LAST:event_latentaRamMouseClicked
+
+    private void voltajRamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltajRamActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_voltajRamActionPerformed
+    
+    private void tipMemorieRamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tipMemorieRamMouseClicked
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_tipMemorieRamMouseClicked
+   
+    private void voltajRamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_voltajRamMouseClicked
+        // TODO add your handling code here:
+     
+    }//GEN-LAST:event_voltajRamMouseClicked
+
+    private void sliderPretHDDMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sliderPretHDDMouseDragged
+        // TODO add your handling code here:
+        valoare_Slider_Pret_HDD.setText((Integer.toString(sliderPretHDD.getValue())));
+    }//GEN-LAST:event_sliderPretHDDMouseDragged
+
+    private void sliderPretHDDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sliderPretHDDMouseClicked
+        // TODO add your handling code here:
+        valoare_Slider_Pret_HDD.setText((Integer.toString(sliderPretHDD.getValue())));
+    }//GEN-LAST:event_sliderPretHDDMouseClicked
+
+    private void btn_filtre_SSDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_filtre_SSDMouseClicked
+        // TODO add your handling code here:
         
-    }//GEN-LAST:event_btn_filtre_HDDMouseClicked
+        ArrayList<SSD> obj_curent=new ArrayList<>();
+        obj_curent=(ArrayList<SSD>)arrayListBuffer.clone();
+        Component[] comp = pnl_Filtre_SSD.getComponents();
+
+        for (int i = 0;i<comp.length;i++) {
+            if (comp[i] instanceof JCheckBox) {
+                
+                JCheckBox nBox=(JCheckBox)comp[i];
+                if(nBox.isSelected()){
+                if(nBox==pretSSD)
+                {
+                    for (ObiectGeneral m : arrayListBuffer)
+                        {
+                            {
+                                if(m.getClass().getCanonicalName().contains("SSD")==true)
+                                {
+                                    SSD ssd=SSD.class.cast(m);
+                                    if(!((int)ssd.getPret()<=sliderPretSSD.getValue()))
+                                    {
+                                        obj_curent.remove(ssd);
+                                    }
+
+                                }
+                            }
+                        }
+                }
+                if(nBox==formFactorSSD)
+                {
+                     for (ObiectGeneral m : arrayListBuffer)
+                        {
+                            {
+                                if(m.getClass().getCanonicalName().contains("SSD")==true)
+                                {
+                                    SSD ssd=SSD.class.cast(m);
+                                    if(!(ssd.getFormFactor().equals(listFormFactorSSD.getSelectedItem())))
+                                    {
+                                        obj_curent.remove(ssd);
+                                    }
+
+                                }
+                            }
+                        }
+                }
+                if(nBox==tipControlSSD)
+                {
+                     for (ObiectGeneral m : arrayListBuffer)
+                        {
+                            {
+                                if(m.getClass().getCanonicalName().contains("SSD")==true)
+                                {
+                                    SSD ssd=SSD.class.cast(m);
+                                    if(!(ssd.getTipController().equals(listaTipControlsSSD.getSelectedItem())))
+                                    {
+                                        obj_curent.remove(ssd);
+                                    }
+
+                                }
+                            }
+                        }
+                }
+                
+                if(nBox==tipMemorieSSD)
+                {
+                    for (ObiectGeneral m : arrayListBuffer)
+                        {
+                            {
+                                if(m.getClass().getCanonicalName().contains("SSD")==true)
+                                {
+                                    SSD ssd=SSD.class.cast(m);
+                                    if(!(ssd.getTipMemorie().equals(listaTipMemorieSSD.getSelectedItem())))
+                                    {
+                                        obj_curent.remove(ssd);
+                                    }
+
+                                }
+                            }
+                        }
+                }
+                if(nBox==capacitateSSD)
+                {
+                    for (ObiectGeneral m : arrayListBuffer)
+                        {
+                            {
+                                if(m.getClass().getCanonicalName().contains("SSD")==true)
+                                {
+                                    SSD ssd=SSD.class.cast(m);
+                                    if(!(Integer.toString(ssd.getCpacitate()).equals(listaCapacitatiSSD.getSelectedItem())))
+                                    {
+                                        obj_curent.remove(ssd);
+                                    }
+
+                                }
+                            }
+                        }
+                }
+                if(nBox==tipComunicareSSD)
+                {
+                    for (ObiectGeneral m : arrayListBuffer)
+                        {
+                            {
+                                if(m.getClass().getCanonicalName().contains("SSD")==true)
+                                {
+                                    SSD ssd=SSD.class.cast(m);
+                                    if(!(ssd.getTipComunicare().equals(listaTipComunicareSSD.getSelectedItem())))
+                                    {
+                                        obj_curent.remove(ssd);
+                                    }
+
+                                }
+                            }
+                        }
+                }
+                
+            }
+            }
+        }
+        if(obj_curent.isEmpty()==false)
+        {jTextArea1.setText("");
+       
+            for(SSD r:obj_curent)
+            {
+                jTextArea1.append(r.toString()+"\n");
+            }}
+            else{jTextArea1.setText("Nu exista produse cu aceste caracteristici");}
+    }//GEN-LAST:event_btn_filtre_SSDMouseClicked
+
+    private void pretSSDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pretSSDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pretSSDActionPerformed
+
+    private void sliderPretSSDMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sliderPretSSDMouseDragged
+        // TODO add your handling code here:
+        valoare_Slider_Pret_SSD.setText(Integer.toString(sliderPretSSD.getValue()));
+    }//GEN-LAST:event_sliderPretSSDMouseDragged
+
+    private void sliderPretSSDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sliderPretSSDMouseClicked
+        // TODO add your handling code here:
+        valoare_Slider_Pret_SSD.setText(Integer.toString(sliderPretSSD.getValue()));
+    }//GEN-LAST:event_sliderPretSSDMouseClicked
+
+    private void formFactorSSDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formFactorSSDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formFactorSSDActionPerformed
+
+    private void listFormFactorSSDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listFormFactorSSDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listFormFactorSSDActionPerformed
+
+    private void tipMemorieSSDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipMemorieSSDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tipMemorieSSDActionPerformed
+
+    private void capacitateSSDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_capacitateSSDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_capacitateSSDActionPerformed
     
-    
-    
+
     /**
      * @param args the command line arguments
      */
@@ -1090,9 +2224,9 @@ public class Interfata_Principala extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox HDD_;
-    private javax.swing.JCheckBox RAM_;
-    private javax.swing.JCheckBox SSD_;
+    private javax.swing.JRadioButton HDD_Tip;
+    private javax.swing.JRadioButton RAM_Tip;
+    private javax.swing.JRadioButton SSD_Tip;
     private com.k33ptoo.components.KButton btn_AfisareTotala;
     private com.k33ptoo.components.KButton btn_filtre_HDD;
     private com.k33ptoo.components.KButton btn_filtre_RAM;
@@ -1103,7 +2237,13 @@ public class Interfata_Principala extends javax.swing.JFrame {
     private javax.swing.JPanel btn_pgPR;
     private javax.swing.JPanel btn_setari;
     private javax.swing.ButtonGroup buttonGroupTIP;
+    private javax.swing.JCheckBox capacitateHDD;
+    private javax.swing.JCheckBox capacitateRam;
+    private javax.swing.JCheckBox capacitateSSD;
+    private javax.swing.JCheckBox comunicareRam;
     private javax.swing.JLabel email_text;
+    private javax.swing.JCheckBox formFactorSSD;
+    private javax.swing.JCheckBox frecventaRam;
     private javax.swing.JLabel icon;
     private javax.swing.JLabel icon1;
     private javax.swing.JLabel icon2;
@@ -1111,11 +2251,9 @@ public class Interfata_Principala extends javax.swing.JFrame {
     private javax.swing.JLabel icon_text1;
     private javax.swing.JLabel icon_text2;
     private javax.swing.JLabel icon_text3;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1123,18 +2261,61 @@ public class Interfata_Principala extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JLayeredPane jLayeredPane_Filtre;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JCheckBox latentaRam;
+    private javax.swing.JComboBox<String> listFormFactorSSD;
+    private javax.swing.JComboBox<String> listaCapacitateRam;
+    private javax.swing.JComboBox<String> listaCapacitatiHDD;
+    private javax.swing.JComboBox<String> listaCapacitatiSSD;
+    private javax.swing.JComboBox<String> listaFrecventeRam;
+    private javax.swing.JComboBox<String> listaTipComunicareHDD;
+    private javax.swing.JComboBox<String> listaTipComunicareSSD;
+    private javax.swing.JComboBox<String> listaTipControlsSSD;
+    private javax.swing.JComboBox<String> listaTipMemorieSSD;
+    private javax.swing.JComboBox<String> listaTipuriComunicariRam;
+    private javax.swing.JComboBox<String> listaTipuriLatenteRam;
+    private javax.swing.JComboBox<String> listaTipuriMemorieHDD;
+    private javax.swing.JComboBox<String> listaTipuriMemorieRam;
+    private javax.swing.JComboBox<String> listaVitezeRotatieHDD;
+    private javax.swing.JComboBox<String> listaVoltajRam;
     private keeptoo.KGradientPanel panel_info_Obj;
     private keeptoo.KGradientPanel panel_info_PR;
     private keeptoo.KGradientPanel panel_info_Setari;
+    private javax.swing.JPanel pnl_Filtre_HDD;
+    private javax.swing.JPanel pnl_Filtre_Major_HDD;
+    private javax.swing.JPanel pnl_Filtre_Major_RAM;
+    private javax.swing.JPanel pnl_Filtre_Major_SSD;
+    private javax.swing.JPanel pnl_Filtre_Ram;
+    private javax.swing.JPanel pnl_Filtre_SSD;
     private javax.swing.JPanel pnl_bg;
+    private javax.swing.JCheckBox pretHDD;
+    private javax.swing.JCheckBox pretRam;
+    private javax.swing.JSlider pretRamSlider;
+    private javax.swing.JCheckBox pretSSD;
     private javax.swing.JPanel sidebar;
+    private javax.swing.JSlider sliderPretHDD;
+    private javax.swing.JSlider sliderPretSSD;
     private javax.swing.JLabel telefon_text;
+    private javax.swing.JCheckBox tipComunicareHDD;
+    private javax.swing.JCheckBox tipComunicareSSD;
+    private javax.swing.JCheckBox tipControlSSD;
+    private javax.swing.JCheckBox tipMemorieHDD;
+    private javax.swing.JCheckBox tipMemorieRam;
+    private javax.swing.JCheckBox tipMemorieSSD;
+    private javax.swing.JLabel valoare_Slider_Pret_HDD;
+    private javax.swing.JLabel valoare_Slider_Pret_Ram;
+    private javax.swing.JLabel valoare_Slider_Pret_SSD;
+    private javax.swing.JCheckBox vitezaRotatieHDD;
+    private javax.swing.JCheckBox voltajRam;
     // End of variables declaration//GEN-END:variables
 
     void setExtendedState() {
