@@ -797,6 +797,7 @@ public class Interfata_Principala extends javax.swing.JFrame {
         });
 
         frecventaRam.setText("Frecventa");
+        frecventaRam.setOpaque(false);
         frecventaRam.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 frecventaRamMouseClicked(evt);
@@ -804,6 +805,7 @@ public class Interfata_Principala extends javax.swing.JFrame {
         });
 
         latentaRam.setText("Latenta");
+        latentaRam.setOpaque(false);
         latentaRam.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 latentaRamMouseClicked(evt);
@@ -818,6 +820,7 @@ public class Interfata_Principala extends javax.swing.JFrame {
         listaTipuriLatenteRam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         voltajRam.setText("Voltaj");
+        voltajRam.setOpaque(false);
         voltajRam.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 voltajRamMouseClicked(evt);
@@ -832,6 +835,7 @@ public class Interfata_Principala extends javax.swing.JFrame {
         listaVoltajRam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         tipMemorieRam.setText("Tip Memorie");
+        tipMemorieRam.setOpaque(false);
         tipMemorieRam.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tipMemorieRamMouseClicked(evt);
@@ -841,6 +845,7 @@ public class Interfata_Principala extends javax.swing.JFrame {
         listaTipuriMemorieRam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         capacitateRam.setText("Capacitate");
+        capacitateRam.setOpaque(false);
 
         listaCapacitateRam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -974,22 +979,27 @@ public class Interfata_Principala extends javax.swing.JFrame {
         });
 
         pretHDD.setText("Pret");
+        pretHDD.setOpaque(false);
 
         valoare_Slider_Pret_HDD.setText("Valoare");
 
         vitezaRotatieHDD.setText("Viteza Rotatie");
+        vitezaRotatieHDD.setOpaque(false);
 
         listaVitezeRotatieHDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         tipMemorieHDD.setText("Tip Memorie");
+        tipMemorieHDD.setOpaque(false);
 
         listaTipuriMemorieHDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         capacitateHDD.setText("Capacitate");
+        capacitateHDD.setOpaque(false);
 
         listaCapacitatiHDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         tipComunicareHDD.setText("Tip Comunicare");
+        tipComunicareHDD.setOpaque(false);
 
         listaTipComunicareHDD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -1097,6 +1107,7 @@ public class Interfata_Principala extends javax.swing.JFrame {
         });
 
         pretSSD.setText("Pret");
+        pretSSD.setOpaque(false);
         pretSSD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pretSSDActionPerformed(evt);
@@ -1106,6 +1117,7 @@ public class Interfata_Principala extends javax.swing.JFrame {
         valoare_Slider_Pret_SSD.setText("Valoare");
 
         formFactorSSD.setText("Form Factor");
+        formFactorSSD.setOpaque(false);
         formFactorSSD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 formFactorSSDActionPerformed(evt);
@@ -1120,10 +1132,12 @@ public class Interfata_Principala extends javax.swing.JFrame {
         });
 
         tipControlSSD.setText("Tip Controler");
+        tipControlSSD.setOpaque(false);
 
         listaTipControlsSSD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         tipMemorieSSD.setText("Tip Memorie");
+        tipMemorieSSD.setOpaque(false);
         tipMemorieSSD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tipMemorieSSDActionPerformed(evt);
@@ -1133,6 +1147,7 @@ public class Interfata_Principala extends javax.swing.JFrame {
         listaTipMemorieSSD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         capacitateSSD.setText("Capacitate");
+        capacitateSSD.setOpaque(false);
         capacitateSSD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 capacitateSSDActionPerformed(evt);
@@ -1142,6 +1157,7 @@ public class Interfata_Principala extends javax.swing.JFrame {
         listaCapacitatiSSD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         tipComunicareSSD.setText("Tip Comunicare");
+        tipComunicareSSD.setOpaque(false);
 
         listaTipComunicareSSD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -1151,15 +1167,15 @@ public class Interfata_Principala extends javax.swing.JFrame {
             pnl_Filtre_SSDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_Filtre_SSDLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnl_Filtre_SSDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(tipComunicareSSD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(capacitateSSD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tipControlSSD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(formFactorSSD, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnl_Filtre_SSDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tipComunicareSSD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(capacitateSSD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tipControlSSD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(formFactorSSD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tipMemorieSSD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnl_Filtre_SSDLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(pretSSD, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(tipMemorieSSD, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(pretSSD, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnl_Filtre_SSDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(listaTipMemorieSSD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1241,8 +1257,7 @@ public class Interfata_Principala extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
                     .addGroup(panel_info_PRLayout.createSequentialGroup()
                         .addGap(181, 181, 181)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabel3)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
